@@ -35,13 +35,15 @@
 
     <style>
       body {
+        visibility: hidden;  /* Nasconde il contenuto inizialmente */
+        background-color: rgba(255, 255, 255, 0);  /* Sfondo bianco */
         margin: 0;
         height: 100vh;
-        background-color: white;
         transition: background-color 0.9s ease-in-out;
       }
   
       body.loaded {
+        visibility: visible;  /* Mostra il contenuto dopo il caricamento */
         background-color: rgba(0, 0, 0, 0);
       }
 
@@ -125,9 +127,12 @@
         class=""
         style="font-family:DepartureMono; font-size: 24px; letter-spacing: 2px; margin-bottom: 1px;"
       >
-      <span style="color: #f3ededc7;" class="inline-text"> ݁⊹ ₊ </span>
-      <span style="color: #f3eded;" class="inline-text">vinc.ee</span>
-      <span style="color: #f3ededc7;" class="inline-text"> ݁₊ ⊹ ݁ </span>
+      <div style="display: flex; justify-content: center; align-items: center;">
+        <span style=" font-size: 24px; letter-spacing: 2px; margin-bottom: 1px; color: #f3ededb9;" class="inline-text"> ݁⊹ ₊ </span>
+        <span style="font-family:DepartureMono; font-size: 24px; letter-spacing: 2px; margin-bottom: 1px; color: #f3eded;" class="inline-text">vinc.ee</span>
+        <span style=" font-size: 24px; letter-spacing: 2px; margin-bottom: 1px; color: #f3ededb9;" class="inline-text">₊ ⊹ ݁ </span>
+    </div>
+    
       </h1>
 
       
@@ -150,7 +155,18 @@
           width: 100%;
         "
       >
-      治あおぐ鶴伝ムロ賞会ぽどゆ落村監カノ官万ドくご時均ゆほをぜ理画チマハメ失禁にぼちさ味本ウ年代国ニイラネ近94革旨尚徒リつぜ。転2見づまこっ当者ょや権政びばふ江要株も<br><br>ゅや護変ナトチエ主付ざげひ題聞りげ読朝投メヘコ安左ヱカミ南関スょゃ商三ぽるぼ退投トンゅげ趣似修級豪わぜあ。治庄楽安オスカ水9未アノセマ沖示ぞど籍海ソオ暮演ヲム国育ラ説危すほ真劇すクうり症新キヨ<br>像実ホクカ詳果ミソ視58酒伺
+      <div class="skeleton-paragraph"></div>
+      <div class="skeleton-paragraph"></div>
+      <div class="skeleton-paragraph"></div>
+      <div class="skeleton-paragraph"></div>
+      <div class="skeleton-paragraph"></div>
+      <div class="skeleton-paragraph"></div>
+      <br>
+      <div class="skeleton-paragraph"></div>
+      <div class="skeleton-paragraph"></div>
+      <div class="skeleton-paragraph"></div>
+      <div class="skeleton-paragraph"></div>
+      <div class="skeleton-header"></div>
     </div>
 
       <div style="display: flex; flex-wrap: wrap; justify-content: space-around; margin-top: 20px;">
@@ -171,7 +187,7 @@
           "
          
         >
-        伝ムロ賞
+        Blog
         </button>
 
         <button
@@ -191,7 +207,7 @@
           "
           
         >
-        伝ムロ賞
+        ░░░░
         </button>
 
         <button
@@ -212,7 +228,7 @@
          
           
         >
-        カ詳果ミ
+        ░░░░
         </button>
 
         <button
@@ -232,7 +248,7 @@
           "
           
         >
-        伝ムロ賞
+        ░░░░
         </button>
       </div>
       <br>
@@ -282,7 +298,15 @@
               <div class="home-container6">
                 <div class="home-container7">
                   <span class="home-text5 animate__animated animate__zoomInDown">
-                    治あおぐ鶴伝ムロ賞会ぽどゆ落村監カノ官万ドくご時均ゆほをぜ理画チマハメ失禁にぼちさ味本ウ年代国ニイラネ近94革旨尚徒リつぜ。転2見づまこっ当者ょや権政びばふ江要株も<br><br>ゅや護変ナトチエ主付ざげひ題聞りげ読朝投メヘコ安左ヱカミ南関スょゃ商三ぽるぼ退投トンゅげ趣似修級豪わぜあ。治庄楽安オスカ水9未アノセマ沖示ぞど籍海ソオ暮演ヲム国育ラ説危すほ真劇すクうり症新キヨ<br>像実ホクカ詳果ミソ視58酒伺屯机へげ。
+                    <div class="skeleton-paragraph"></div>
+                    <div class="skeleton-paragraph"></div>
+                    <div class="skeleton-paragraph"></div>
+                    <div class="skeleton-header"></div>
+                    <div class="skeleton-paragraph"></div>
+                    <div class="skeleton-paragraph"></div>
+                    <div class="skeleton-paragraph"></div>
+                    <div class="skeleton-header"></div>
+                    <p style="color: #a27ad300;">dummytextdummytextdummytextdummytextdummyte</p>
                   </span>
                 </div>
               </div>
@@ -293,13 +317,13 @@
                   Blog
                 </a>
                 <a href="https://blog.vinc.ee/" class="home-button2 button">
-                  ぽどゆ落
+                  ░░░░
                 </a>
                 <a href="https://blog.vinc.ee/" class="home-button3 button">
-                  伝ムロ賞
+                  ░░░░
                 </a>
                 <a href="https://blog.vinc.ee/" class="home-button4 button">
-                  カ詳果ミ
+                  ░░░░
                 </a>
               </div>
             </div>
@@ -311,9 +335,11 @@
     </div>
 
     <script>
-      window.addEventListener('load', function() {
-          document.body.classList.add('loaded');
-      });
+      // Aspetta il caricamento completo delle risorse (immagini incluse)
+      window.onload = function() {
+        // Mostra il contenuto della pagina
+        document.body.classList.add('loaded');
+      };
     </script>
   </body>
 </html>
