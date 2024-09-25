@@ -1,1 +1,1 @@
-My boring website
+Personal website
