@@ -3,13 +3,14 @@
   <head>
     <title>vinc.ee  ݁ ⊹ .  ݁ </title>
     <meta name="robots" content="noindex">
-    <meta name="darkreader-lock">
+    <meta name="darkreader-lock"> 
     <meta property="og:title" content="Definite Frail Hummingbird" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
     <meta property="twitter:card" content="summary_large_image" />
     <link rel="icon" href="/icons/favicon-32x32.png" type="image/png">
     <link rel="icon" href="/icons/favicon.ico" type="image/x-icon">
+
     <style data-tag="reset-style-sheet">
       html { line-height: 1.15; } body { margin: 0; } * { box-sizing: border-box; border-width: 0; border-style: solid; } p, li, ul, pre, div, h1, h2, h3, h4, h5, h6, figure, blockquote, figcaption { margin: 0; padding: 0; } button { background-color: transparent; } button, input, optgroup, select, textarea { font-family: inherit; font-size: 100%; line-height: 1.15; margin: 0; } button, select { text-transform: none; } button, [type="button"], [type="reset"], [type="submit"] { -webkit-appearance: button; } button::-moz-focus-inner, [type="button"]::-moz-focus-inner, [type="reset"]::-moz-focus-inner, [type="submit"]::-moz-focus-inner { border-style: none; padding: 0; } button:-moz-focus, [type="button"]:-moz-focus, [type="reset"]:-moz-focus, [type="submit"]:-moz-focus { outline: 1px dotted ButtonText; } a { color: inherit; text-decoration: inherit; } input { padding: 2px 4px; } img { display: block; } html { scroll-behavior: smooth; }
     </style>
@@ -20,7 +21,14 @@
         font-size: 16px;
       }
 
+      .always-visible{
+    position: absolute;  /* gli elementi always-visible son sempre visibili saas */
+    
+    visibility: visible;  
+}
+
       body {
+        background-color: #00000000;  /* Imposta lo sfondo su nero fin da subito */
         font-weight: 400;
         font-style: normal;
         text-decoration: none;
@@ -31,21 +39,22 @@
         background: var(--dl-color-theme-neutral-light);
         fill: var(--dl-color-theme-neutral-dark);
       }
-    </style>
-
-    <style>
+    
       body {
-        visibility: hidden;  /* Nasconde il contenuto inizialmente */
-        background-color: rgba(255, 255, 255, 0);  /* Sfondo bianco */
+        visibility: hidden;  /* nascondi tutto mentre carica le immagini */
         margin: 0;
         height: 100vh;
         transition: background-color 0.9s ease-in-out;
       }
   
       body.loaded {
-        visibility: visible;  /* Mostra il contenuto dopo il caricamento */
+        visibility: visible;  /* fai riapparire tutto dopo che le immagnii sono state scaricate */
         background-color: rgba(0, 0, 0, 0);
+        
+        
       }
+
+     
 
       html, body {
         margin: 0;
@@ -95,9 +104,13 @@
   </head>
 
   <body>
-    <section class="container">
+
+    
+    <div style="z-index: -2;" class="radial-gradient"></div>
+    <section class="container ">
       <div class="glows">
         <div class="core-cloud"></div>
+        
       </div>
     </section>
 
@@ -119,7 +132,7 @@
         alt="Fiore GIF"
         id="home-gif2"
         class="home-gif animate__animated animate__fadeInDown"
-        style="width: 150px; height: auto; margin: 10px auto;"
+        style="width: 150px; height: auto; margin: 10px auto; "
       />
 
       <h1
@@ -170,7 +183,8 @@
     </div>
 
       <div style="display: flex; flex-wrap: wrap; justify-content: space-around; margin-top: 20px;">
-        <button
+        
+        <button href="https://blog.vinc.ee/"
           
           style="
             border: 2px dashed;
@@ -187,7 +201,7 @@
           "
          
         >
-        Blog
+        ░░░░
         </button>
 
         <button
@@ -265,12 +279,14 @@
     </div>
     </div>
 
-    <div class="desktop-content">
+    <div class="desktop-content ">
       <link href="./index.css" rel="stylesheet" />
 
-      <div class="home-container1">
+      <div class="home-container1 ">
         <div class="home-container2">
-          <div class="home-container3 ">
+          <div style="background-image: url('linee-lato.svg'); animation-duration: 1.2s;" class="animate__animated animate__jackInTheBox  home-container2-sovrapposto"></div>
+          <div style="background-image: url('linee-sotto.svg');" class="animate__animated animate__rotateInUpLeft  home-container2-sovrapposto"></div>
+          <div class="home-container3 always-visible">
             <script>
               window.addEventListener('load', function() {
                 var gifElement1 = document.getElementById('home-gif');
@@ -311,10 +327,10 @@
                 </div>
               </div>
               
-              <div class="home-container8 ">
+              <div class="home-container8 always-visible">
                 
                 <a href="https://blog.vinc.ee/" class="home-button1 button">
-                  Blog
+                  ░░░░
                 </a>
                 <a href="https://blog.vinc.ee/" class="home-button2 button">
                   ░░░░
@@ -329,17 +345,19 @@
             </div>
           </div>
         </div>
-        <div id="footer" style=" padding-bottom: 9px; text-align: center; color: #ffffffc1; position:fixed;bottom:0;left:0;right:0;height:30px; font-size: 12px; bottom: 0 !important; font-family: Arial, Helvetica, sans-serif; font-weight: 300;">
-          <b><a>© <script>document.write(new Date().getFullYear());</script> ~ Vincenzo Didonna</a>
+        <div id="footer" style=" padding-bottom: 9px; text-align: center; color: #ffffffb5; position:fixed;bottom:0;left:0;right:0;height:30px; font-size: 12px; bottom: 0 !important; font-family: Arial, Helvetica, sans-serif; font-weight: 100;">
+          <a>© <script>document.write(new Date().getFullYear());</script> ~ Vincenzo Didonna</a>
       </div>
+      
     </div>
 
     <script>
-      // Aspetta il caricamento completo delle risorse (immagini incluse)
+      // aspetta il caricamento di tutti gli elemtni es immagini
       window.onload = function() {
         // Mostra il contenuto della pagina
         document.body.classList.add('loaded');
       };
+
     </script>
   </body>
 </html>

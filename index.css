@@ -70,17 +70,30 @@
   display: flex;
   align-self: center;
   align-items: center;
-  animation-name: none;
-  animation-delay: 0s;
   background-size: cover;
   justify-content: flex-start;
-  background-image: url('linee-compressed.svg');
-  animation-duration: 300ms;
-  animation-direction: normal;
   background-position: center;
-  animation-iteration-count: 1;
-  animation-timing-function: ease;
+  
+  position: relative; /* Aggiunto */
+  
 }
+
+.home-container2-sovrapposto {
+  width: 1100px;
+  height: 700px;
+  display: flex;
+  align-self: center;
+  align-items: center;
+  background-size: cover;
+  justify-content: flex-start;
+  background-position: center;
+  
+  position: absolute; /* Aggiunto */
+  top: 0; /* Posiziona il div esattamente sopra l'altro */
+  left: 0; /* Posiziona il div esattamente sopra l'altro */
+  
+}
+
 .home-container3 {
   flex: 0 0 auto;
   width: 464px;
@@ -465,7 +478,8 @@
 	background: linear-gradient(
 		90deg,
 		rgba(255, 255, 255, 0) 0%,
-		rgba(57, 45, 24, 0.316) 50%,
+    rgba(240, 86, 240, 0.316) 25%,
+    rgba(75, 241, 227, 0.316) 50%,
 		rgba(255, 255, 255, 0) 100%
 	);
 	animation: loading 1.5s cubic-bezier(0.57, -0.01, 0.21, 0.89) infinite;
