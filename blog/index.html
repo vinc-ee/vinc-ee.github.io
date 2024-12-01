@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>vinc.ee  ݁ ⊹ .  ݁ </title>
+    <meta name="robots" content="noindex">
+    <meta name="darkreader-lock"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="../icons/favicon-32x32.png" type="image/png">
+    <link rel="icon" href="../icons/favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina di esempio con Animazioni</title>
+    <style>
+        @font-face {
+            font-family: 'DepartureMono';
+            src: url('../fonts/DepartureMono-Regular.woff2') format('woff2'),
+                 url('../fonts/DepartureMono-Regular.woff') format('woff'),
+                 url('../fonts/DepartureMono-Regular.otf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body {
+            background-color: #9c202000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin: 40px 0;
+        }
+
+        .line-with-text {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .line {
+            height: 1px;
+            background-color: #00bfa5; /* Colore della linea verde */
+            width: 50%; /* Linee fisse al 50% */
+        }
+
+        .line.red {
+            background-color: #d32f2f; /* Colore della linea rossa */
+        }
+
+        .line-with-text span {
+            margin: 0 15px;
+            color: #00bfa5;
+            font-weight: light;
+            font-size: 16px;
+            font-family: "DepartureMono";
+        }
+
+        .line-with-text.red span {
+            color: #d32f2f;
+        }
+
+        a {
+            font-weight: light;
+            font-size: 16px;
+        }
+
+        .post {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+            padding: 1px;
+            background-color: #ff2e2e00;
+        }
+
+        .post img {
+            width: 70px;
+            min-height: 45px;
+            margin-right: 15px;
+            border: 4px solid #55555500;
+            border-radius: 4px;
+            transition: opacity 0.5s ease; /* Transizione per l'effetto di transizione */
+            opacity: 0.6; /* Opacità bassa per la versione a bassa risoluzione */
+        }
+
+        .post img.loaded {
+            opacity: 1; /* Opacità alta quando l'immagine ad alta risoluzione è caricata */
+        }
+
+        .post-title a {
+            font-size: 1em;
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+           
+        }
+
+        .post-title a:hover {
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            
+}
+
+    </style>
+      
+</head>
+<body >
+    <div class="container">
+        <!-- Prima sezione con linea verde -->
+        <div class="section">
+            <div class="line-with-text">
+                <div class="line" id="line-green-left"></div>
+                <span><p style="white-space: nowrap;">Writeups</p></span>
+                <div class="line" id="line-green-right"></div>
+            </div>
+            <div class="post">
+                <img src="example-min.webp" data-src="example.webp" alt="?">
+                <div class="post-title"><a href="/article1/">Phasellus volutpat porttitor felis eu consequat</a></div>
+            </div>
+            <div class="post">
+                <img src="example-min.webp" data-src="example.webp" alt="?">
+                <div class="post-title"><a href="/article1/">Cras elit diam, fringilla non laoreet et</a></div>
+            </div>
+            <!-- Altri post qui, con lo stesso schema -->
+        </div>
+
+        <!-- Seconda sezione con linea rossa -->
+        <div class="section">
+            <div class="line-with-text red">
+                <div class="line red" id="line-red-left"></div>
+                <span><p style="white-space: nowrap;">Off-topic</p></span>
+                <div class="line red" id="line-red-right"></div>
+            </div>
+            <div class="post">
+                <img src="example-min.webp" data-src="example.webp" alt="?">
+                <div class="post-title"><a href="/article1/">hendrerit vehicula erat. Sed ut eros</a></div>
+            </div>
+            <div class="post">
+                <img src="example-min.webp" data-src="example.webp" alt="?">
+                <div class="post-title"><a href="/article1/">rhoncus turpis cursus id. Vestibulum</a></div>
+            </div>
+            <!-- Altri post qui, con lo stesso schema -->
+        </div>
+    </div>
+
+    <script>
+        // Caricamento progressivo dell'immagine
+        document.addEventListener("DOMContentLoaded", function() {
+            const images = document.querySelectorAll(".post img");
+            
+            images.forEach(img => {
+                const highResSrc = img.getAttribute("data-src");
+                const highResImg = new Image();
+                
+                highResImg.src = highResSrc;
+                highResImg.onload = function() {
+                    img.src = highResSrc;
+                    img.classList.add("loaded"); // Aggiunge una classe per l'effetto di transizione
+                };
+            });
+        });
+    </script>
+</body>
+</html>

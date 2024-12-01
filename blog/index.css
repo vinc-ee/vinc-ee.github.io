@@ -1,0 +1,113 @@
+:root {
+    background: rgb(0, 0, 0);
+   
+  }
+  
+  .container {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .glows {
+    position: relative;
+  }
+  
+  /* These are the glowing rays (before and after) */
+  .glows::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    bottom: 220px;
+    left: -130px;
+    display: block;
+    width: 405px;
+    height: 397px;
+    background-image: url("/images/webp/light-beam-0@2x.webp");
+    background-size: 405px 397px;
+    mix-blend-mode: color-dodge;
+    transform-origin: bottom right;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .glows::before {
+      opacity: 0;
+      animation: 23s ease infinite forwards alternate glow-rotate,
+        7s ease infinite forwards alternate glow-blink;
+    }
+  }
+  
+  .glows::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    bottom: 200px;
+    left: -100px;
+    display: block;
+    width: 415px;
+    height: 531px;
+    background-image: url("/images/webp/light-beam-1@2x.webp");
+    background-size: 415px 531px;
+    mix-blend-mode: color-dodge;
+    transform-origin: 90% 90%;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .glows::after {
+      opacity: 0;
+      animation: 28s ease 2s infinite forwards alternate glow-rotate,
+        12s ease 2s infinite forwards alternate glow-blink;
+    }
+  }
+  
+  @keyframes glow-rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes glow-blink {
+    0% {
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  /* This is the glowing center */
+  .core-cloud {
+    display: block;
+    width: 496px;
+    height: 496px;
+    background-image: url("/images/webp/glow-core@2x.webp");
+    background-size: 496px 496px;
+    background-repeat: no-repeat;
+  
+    @media (prefers-reduced-motion: no-preference) {
+      animation: 30s cubic-bezier(0.44, 0.21, 0.68, 0.89) infinite forwards
+          alternate rotate-core;
+    }
+  }
+  
+  @keyframes rotate-core {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(90deg);
+    }
+    100% {
+      transform: rotate(180deg);
+    }
+  }
+  
