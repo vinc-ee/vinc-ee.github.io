@@ -4,10 +4,8 @@
     <title>vinc.ee  ݁ ⊹ .  ݁ </title>
     <meta name="robots" content="noindex">
     <meta name="darkreader-lock"> 
-    <meta property="og:title" content="Definite Frail Hummingbird" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
-    <meta property="twitter:card" content="summary_large_image" />
     <link rel="icon" href="/icons/favicon-32x32.png" type="image/png">
     <link rel="icon" href="/icons/favicon.ico" type="image/x-icon">
 
@@ -20,6 +18,15 @@
         font-family: Inter;
         font-size: 16px;
       }
+      .desktop-hidden, .mobile-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.2s ease-out, visibility 0.2s ease-out;
+}
+
+
+
 
       .always-visible{
     position: absolute;  /* gli elementi always-visible son sempre visibili saas */
@@ -38,6 +45,7 @@
         color: var(--dl-color-theme-neutral-dark);
         background: var(--dl-color-theme-neutral-light);
         fill: var(--dl-color-theme-neutral-dark);
+        overflow: hidden; /* Hide scrollbars */
       }
     
       body {
@@ -50,7 +58,8 @@
       body.loaded {
         visibility: visible;  /* fai riapparire tutto dopo che le immagnii sono state scaricate */
         background-color: rgba(0, 0, 0, 0);
-        
+        transition-delay: 0s;
+        overflow: hidden; /* Hide scrollbars */
         
       }
 
@@ -102,7 +111,40 @@
     
 
   </head>
-
+  <script>
+    function openOverlay() {
+      // Rendi visibile l'overlay
+      const overlay = document.getElementById("fullscreenOverlay");
+      overlay.style.display = "flex";
+    
+      // Nascondi sia il contenuto desktop che mobile
+      document.querySelector('.desktop-content').classList.add('desktop-hidden');
+      document.querySelector('.mobile-content').classList.add('mobile-hidden');
+    
+      // Aggiungi uno stato alla cronologia per l'overlay
+      history.pushState({ overlayOpen: true }, "Overlay Open");
+    }
+    
+    function closeOverlay() {
+      // Torna allo stato precedente senza lasciare una voce in cronologia
+      history.back();
+    }
+    
+    // Ascolta l'evento di ritorno indietro per chiudere l'overlay se è aperto
+    window.onpopstate = function(event) {
+      if (event.state && event.state.overlayOpen) {
+        // Mantieni l'overlay aperto se l'evento popstate è legato all'apertura dell'overlay
+        const overlay = document.getElementById("fullscreenOverlay");
+        overlay.style.display = "flex";
+      } else {
+        // Ripristina sia il contenuto desktop che mobile
+        document.querySelector('.desktop-content').classList.remove('desktop-hidden');
+        document.querySelector('.mobile-content').classList.remove('mobile-hidden');
+        document.getElementById("fullscreenOverlay").style.display = "none";
+      }
+    };
+    </script>
+    
   <body>
 
     
@@ -128,11 +170,11 @@
     ">
      
       <img
-        src="/images/riso1.gif"
+        src="/images/riso1-mobile.gif"
         alt="Fiore GIF"
         id="home-gif2"
-        class="home-gif animate__animated animate__fadeInDown"
-        style="width: 150px; height: auto; margin: 10px auto; "
+        class="home-gif2"
+        style="width: 150px; height: 120px; margin: 10px auto; "
       />
 
       <h1
@@ -184,7 +226,7 @@
 
       <div style="display: flex; flex-wrap: wrap; justify-content: space-around; margin-top: 20px;">
         
-        <button href="https://blog.vinc.ee/"
+        <button onclick="openOverlay()" href="https://blog.vinc.ee/"
           
           style="
             border: 2px dashed;
@@ -279,30 +321,48 @@
     </div>
     </div>
 
+    
+    <div id="fullscreenOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0); color: white; z-index: 1000; justify-content: center; align-items: center; flex-direction: column;">
+        <button onclick="closeOverlay()" style="position: absolute; top: 20px; right: 20px; font-size: 24px; color: white; background: transparent; border: none; cursor: pointer;">&times;</button>
+        
+        <div  id="overlayContent" style="width: 100%; height: 100%; padding: 0px;">
+          <iframe src="blog.vinc.ee" width="100%" height="100%" frameborder="0" style=" background: #00000000;"></iframe>
+        </div>
+      </div>
+      
+
+      
     <div class="desktop-content ">
       <link href="./index.css" rel="stylesheet" />
 
       <div class="home-container1 ">
         <div class="home-container2">
-          <div style="background-image: url('linee-lato.svg'); animation-duration: 1.4s;" class="animate__animated animate__jackInTheBox  home-container2-sovrapposto"></div>
-          <div style="background-image: url('linee-sotto.svg'); animation-duration: 1.3s;" class="animate__animated animate__rotateInUpLeft  home-container2-sovrapposto"></div>
+          <div style="background-image: url('linee-lato.svg'); animation-duration: 1s;" class="animate animate__jackInTheBox  home-container2-sovrapposto"></div>
+          <div style="background-image: url('linee-sotto.svg'); animation-duration: 1s;" class="animate animate__rotateInUpLeft  home-container2-sovrapposto"></div>
           <div class="home-container3 always-visible">
             <script>
               window.addEventListener('load', function() {
                 var gifElement1 = document.getElementById('home-gif');
                 var gifElement2 = document.getElementById('home-gif2');
                 
-                var gifSrc1 = gifElement1.src;
+                // Controlla se gifElement1 e gifElement2 sono presenti nella pagina
+                if (gifElement1) {
+                  var gifSrc1 = gifElement1.src;
+                  var randomParam1 = (gifSrc1.includes('?') ? '&' : '?') + 'rand=' + Math.floor(Math.random() * 1000);
+                  gifElement1.src = gifSrc1 + randomParam1;
+                }
             
-                var randomParam = '?rand=' + Math.floor(Math.random() * 1000);
-            
-                gifElement1.src = gifSrc1 + randomParam;
-                gifElement2.src = gifSrc1 + randomParam;
+                if (gifElement2) {
+                  var gifSrc2 = gifElement2.src;
+                  var randomParam2 = (gifSrc2.includes('?') ? '&' : '?') + 'rand=' + Math.floor(Math.random() * 1000);
+                  gifElement2.src = gifSrc2 + randomParam2;
+                }
               });
             </script>
             
             
-            <img id="home-gif" src="/images/riso1.gif" alt="image" class="home-image" draggable="false" />
+            
+            <img id="home-gif"  src="/images/riso1.gif" alt="image" class="home-image" draggable="false" />
           </div>
           <div class="home-container4">
             <h1 class="home-text1">
@@ -329,9 +389,9 @@
               
               <div class="home-container8 always-visible">
                 
-                <a href="https://blog.vinc.ee/" class="home-button1 button">
-                  ░░░░
-                </a>
+                <button onclick="openOverlay()" class="home-button1 button">
+                  Blog
+                </button>
                 <a href="https://blog.vinc.ee/" class="home-button2 button">
                   ░░░░
                 </a>
@@ -351,13 +411,47 @@
       
     </div>
 
-    <script>
-      // aspetta il caricamento di tutti gli elemtni es immagini
-      window.onload = function() {
-        // Mostra il contenuto della pagina
-        document.body.classList.add('loaded');
-      };
+    
 
+    
+
+    <script>
+      // Funzione che ritorna una promessa per verificare il caricamento di tutte le immagini
+      function loadImages() {
+        const images = document.querySelectorAll("img");
+        return Promise.all(Array.from(images).map(img => {
+          return new Promise(resolve => {
+            if (img.complete) {
+              resolve();
+            } else {
+              img.addEventListener("load", resolve);
+              img.addEventListener("error", resolve);
+            }
+          });
+        }));
+      }
+
+      // Usa DOMContentLoaded per iniziare a verificare il caricamento degli elementi
+      document.addEventListener("DOMContentLoaded", function () {
+        // Aspetta il caricamento di tutte le immagini
+        loadImages().then(() => {
+          // Aggiungi la classe 'loaded' per mostrare il contenuto della pagina
+          document.body.classList.add("loaded");
+
+          // Seleziona tutti gli elementi con la classe 'animate'
+          const animatedElements = document.querySelectorAll('.animate');
+
+          // Itera su ciascun elemento e aggiungi le classi di animazione
+          animatedElements.forEach((el, index) => {
+            // Aggiungi la classe 'animate__animated' e la specifica animazione
+            // Puoi personalizzare l'animazione per ogni elemento se necessario
+            el.classList.add('animate__animated'); // Esempio con 'fadeIn'
+
+            
+          });
+        });
+      });
     </script>
+      
   </body>
 </html>

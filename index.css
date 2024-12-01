@@ -105,17 +105,12 @@
   justify-content: center;
 }
 .home-image {
-  width: 512px;
+  width: 500px;
   height: auto;
   z-index: 101;
   object-fit: cover;
   padding-left: 70px;
-  animation-name: zoomIn;
-  animation-delay: 5ms;
-  animation-duration: 100ms;
-  animation-direction: normal;
-  animation-iteration-count: 1;
-  animation-timing-function: ease;
+  
 }
 .home-container4 {
   flex: 0 0 auto;
