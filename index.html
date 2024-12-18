@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <title>vinc.ee  ݁ ⊹ .  ݁ </title>
     <meta name="robots" content="noindex">
     <meta name="darkreader-lock"> 
@@ -10,7 +10,14 @@
     <link rel="icon" href="/icons/favicon.ico" type="image/x-icon">
 
     <style data-tag="reset-style-sheet">
-      html { line-height: 1.15; } body { margin: 0; } * { box-sizing: border-box; border-width: 0; border-style: solid; } p, li, ul, pre, div, h1, h2, h3, h4, h5, h6, figure, blockquote, figcaption { margin: 0; padding: 0; } button { background-color: transparent; } button, input, optgroup, select, textarea { font-family: inherit; font-size: 100%; line-height: 1.15; margin: 0; } button, select { text-transform: none; } button, [type="button"], [type="reset"], [type="submit"] { -webkit-appearance: button; } button::-moz-focus-inner, [type="button"]::-moz-focus-inner, [type="reset"]::-moz-focus-inner, [type="submit"]::-moz-focus-inner { border-style: none; padding: 0; } button:-moz-focus, [type="button"]:-moz-focus, [type="reset"]:-moz-focus, [type="submit"]:-moz-focus { outline: 1px dotted ButtonText; } a { color: inherit; text-decoration: inherit; } input { padding: 2px 4px; } img { display: block; } html { scroll-behavior: smooth; }
+      html { line-height: 1.15;} 
+      body { margin: 0;} 
+      * { box-sizing: border-box; border-width: 0; border-style: solid;} 
+      p, li, ul, pre, div, h1, h2, h3, h4, h5, h6, figure, blockquote, figcaption { margin: 0; padding: 0;}
+      button { background-color: transparent;} 
+      a { color: inherit; text-decoration: inherit;} 
+      img { display: block;} 
+      html { scroll-behavior: smooth;}
     </style>
 
     <style data-tag="default-style-sheet">
@@ -18,58 +25,34 @@
         font-family: Inter;
         font-size: 16px;
       }
-      .desktop-hidden, .mobile-hidden {
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-  transition: opacity 0.2s ease-out, visibility 0.2s ease-out;
-}
-
-
-
-
-      .always-visible{
-    position: absolute;  /* gli elementi always-visible son sempre visibili saas */
-    
-    visibility: visible;  
-}
 
       body {
-        background-color: #00000000;  /* Imposta lo sfondo su nero fin da subito */
-        font-weight: 400;
-        font-style: normal;
-        text-decoration: none;
-        text-transform: none;
-        letter-spacing: normal;
-        line-height: 1.15;
-        color: var(--dl-color-theme-neutral-dark);
-        background: var(--dl-color-theme-neutral-light);
-        fill: var(--dl-color-theme-neutral-dark);
-        overflow: hidden; /* Hide scrollbars */
-      }
-    
-      body {
-        visibility: hidden;  /* nascondi tutto mentre carica le immagini */
+        visibility: hidden; 
+        background: black;
+        overflow: hidden;
         margin: 0;
         height: 100vh;
         transition: background-color 0.9s ease-in-out;
       }
-  
+      
       body.loaded {
-        visibility: visible;  /* fai riapparire tutto dopo che le immagnii sono state scaricate */
-        background-color: rgba(0, 0, 0, 0);
-        transition-delay: 0s;
-        overflow: hidden; /* Hide scrollbars */
-        
+        visibility: visible;
+        background-color: rgba(0,0,0,0);
       }
 
-     
+      .animate {
+        opacity: 0;
+      }
 
-      html, body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        
+      .desktop-hidden, .mobile-hidden {
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+      }
+
+      .always-visible {
+        position: absolute;
+        visibility: visible;
       }
 
       .container {
@@ -93,287 +76,146 @@
         .desktop-content {
           display: none;
         }
-        
         .mobile-content {
           display: block;
         }
-        
       }
 
+
+      .home-text2 {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #feb1d9, #90e5ed); /* Colori rosa e azzurrino */
+            -webkit-background-clip: text; /* Applicare gradiente solo al testo */
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+      .skeleton-paragraph {
+        width: 80%;
+        height: 10px;
+        background: #f3eded3b;
+        margin: 8px 0;
+      }
+      .skeleton-header {
+        width: 40%;
+        height: 15px;
+        background: #f3eded3b;
+        margin: 8px 0;
+      }
     </style>
 
-    
-        
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
-    
-
-  </head>
-  <script>
+</head>
+<script>
     function openOverlay() {
-      // Rendi visibile l'overlay
       const overlay = document.getElementById("fullscreenOverlay");
       overlay.style.display = "flex";
-    
-      // Nascondi sia il contenuto desktop che mobile
       document.querySelector('.desktop-content').classList.add('desktop-hidden');
       document.querySelector('.mobile-content').classList.add('mobile-hidden');
-    
-      // Aggiungi uno stato alla cronologia per l'overlay
       history.pushState({ overlayOpen: true }, "Overlay Open");
     }
-    
+
     function closeOverlay() {
-      // Torna allo stato precedente senza lasciare una voce in cronologia
       history.back();
     }
-    
-    // Ascolta l'evento di ritorno indietro per chiudere l'overlay se è aperto
+
     window.onpopstate = function(event) {
       if (event.state && event.state.overlayOpen) {
-        // Mantieni l'overlay aperto se l'evento popstate è legato all'apertura dell'overlay
         const overlay = document.getElementById("fullscreenOverlay");
         overlay.style.display = "flex";
       } else {
-        // Ripristina sia il contenuto desktop che mobile
         document.querySelector('.desktop-content').classList.remove('desktop-hidden');
         document.querySelector('.mobile-content').classList.remove('mobile-hidden');
         document.getElementById("fullscreenOverlay").style.display = "none";
       }
     };
-    </script>
-    
-  <body>
-
-    
+</script>
+<body>
     <div style="z-index: -2;" class="radial-gradient"></div>
-    <section class="container ">
+    <section class="container">
       <div class="glows">
         <div class="core-cloud"></div>
-        
       </div>
     </section>
 
     <div class="mobile-content">
-      <div style="
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
-      padding: 20px;
-      
-      color: #fff5f5;
-      
-      text-align: center;
-    ">
-     
-      <img
-        src="/images/riso1-mobile.gif"
-        alt="Fiore GIF"
-        id="home-gif2"
-        class="home-gif2"
-        style="width: 150px; height: 120px; margin: 10px auto; "
-      />
+      <div style="display: flex;flex-direction: column;justify-content: space-between;height: 100%;padding: 20px;color: #fff5f5;text-align: center;">
+        <img
+          loading="lazy"
+          src="/images/riso1-mobile.gif"
+          alt="Fiore GIF"
+          id="home-gif2"
+          class="home-gif2"
+          style="width: 150px; height: 120px; margin: 10px auto; "
+        />
 
-      <h1
-      
-        class=""
-        style="font-family:DepartureMono; font-size: 24px; letter-spacing: 2px; margin-bottom: 1px;"
-      >
-      <div style="display: flex; justify-content: center; align-items: center;">
-        <span style=" font-size: 24px; letter-spacing: 2px; margin-bottom: 1px; color: #f3ededb9;" class="inline-text"> ݁⊹ ₊ </span>
-        <span style="font-family:DepartureMono; font-size: 24px; letter-spacing: 2px; margin-bottom: 1px; color: #f3eded;" class="inline-text">vinc.ee</span>
-        <span style=" font-size: 24px; letter-spacing: 2px; margin-bottom: 1px; color: #f3ededb9;" class="inline-text">₊ ⊹ ݁ </span>
-    </div>
-    
-      </h1>
+        <h1 style="font-family:DepartureMono; font-size: 24px; letter-spacing: 2px; margin-bottom: 1px;">
+          <div style="display: flex; justify-content: center; align-items: center;">
+            <span style=" font-size: 24px; letter-spacing: 2px; margin-bottom: 1px; color: #f3ededb9;" class="inline-text"> ݁⊹ ₊ </span>
+            <span style="font-family:DepartureMono; font-size: 24px; letter-spacing: 2px; margin-bottom: 1px; color: #f3eded;" class="inline-text">vinc.ee</span>
+            <span style=" font-size: 24px; letter-spacing: 2px; margin-bottom: 1px; color: #f3ededb9;" class="inline-text">₊ ⊹ ݁ </span>
+          </div>
+        </h1>
+        <hr style="border: none; border-top: 1px solid #f3eded; width: 80%; margin: 10px auto;" />
 
-      
-      <hr
-        class=""
-        style="border: none; border-top: 1px solid #f3eded; width: 80%; margin: 10px auto;"
-      />
+        <div style="font-size: 16px;line-height: 1.6;letter-spacing: 2px;text-align: left;display: inline-block;color: #f3eded;padding: 5px;margin: 5px auto;width: 100%;">
+          <div class="skeleton-paragraph"></div>
+          <div class="skeleton-paragraph"></div>
+          <div class="skeleton-paragraph"></div>
+          <div class="skeleton-paragraph"></div>
+          <div class="skeleton-paragraph"></div>
+          <div class="skeleton-paragraph"></div>
+          <br>
+          <div class="skeleton-paragraph"></div>
+          <div class="skeleton-paragraph"></div>
+          <div class="skeleton-paragraph"></div>
+          <div class="skeleton-paragraph"></div>
+          <div class="skeleton-header"></div>
+        </div>
 
-      <div
-        
-        style="
-          font-size: 16px;
-          line-height: 1.6;
-          letter-spacing: 2px;
-          text-align: left;
-          display: inline-block;
-          color: #f3eded;
-          padding: 5px;
-          margin: 5px auto;
-          width: 100%;
-        "
-      >
-      <div class="skeleton-paragraph"></div>
-      <div class="skeleton-paragraph"></div>
-      <div class="skeleton-paragraph"></div>
-      <div class="skeleton-paragraph"></div>
-      <div class="skeleton-paragraph"></div>
-      <div class="skeleton-paragraph"></div>
-      <br>
-      <div class="skeleton-paragraph"></div>
-      <div class="skeleton-paragraph"></div>
-      <div class="skeleton-paragraph"></div>
-      <div class="skeleton-paragraph"></div>
-      <div class="skeleton-header"></div>
-    </div>
-
-      <div style="display: flex; flex-wrap: wrap; justify-content: space-around; margin-top: 20px;">
-        
-        <button onclick="openOverlay()" href="https://vinc.ee/blog/index.html"
-          
-          style="
-            border: 2px dashed;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            border-color:#fd9fc9df;
-            background-color: transparent;
-            cursor: pointer;
-            margin: 10px;
-            width: 120px;
-            text-align: center;
-            transition: border-color 0.3s ease;
-          "
-         
-        >
-        ░░░░
-        </button>
-
-        <button
-          
-          style="
-            border: 2px dashed;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            border-color:#a27ad3;
-            background-color: transparent;
-            cursor: pointer;
-            margin: 10px;
-            width: 120px;
-            text-align: center;
-            transition: border-color 0.3s ease;
-          "
-          
-        >
-        ░░░░
-        </button>
-
-        <button
-          
-          style="
-            border: 2px dashed;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            border-color: #67a6b9;
-            background-color: transparent;
-            cursor: pointer;
-            margin: 10px;
-            width: 120px;
-            text-align: center;
-            transition: border-color 0.3s ease;
-          "
-         
-          
-        >
-        ░░░░
-        </button>
-
-        <button
-          
-          style="
-            border: 2px dashed;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            border-color: #bad6cad6;
-            background-color: transparent;
-            cursor: pointer;
-            margin: 10px;
-            width: 120px;
-            text-align: center;
-            transition: border-color 0.3s ease;
-          "
-          
-        >
-        ░░░░
-        </button>
-      </div>
-      <br>
-      <p style="color:#f3eded00">.</p> 
-      <br>
-      
-    <div class="animeTWD">
-      <div class="animeBlurTWD">
-      </div>
-      </div>
-      <div id="footer" style=" padding-bottom: 9px; text-align: center; color: #ffffffb1; font-size: 13px; bottom: 0 !important; font-family: Arial, Helvetica, sans-serif; font-weight: 300;""">
-        <a>© <script>document.write(new Date().getFullYear());</script> ~ Vincenzo Didonna</a>
-      </div>
-    </div>
-    </div>
-
-    
-    <div id="fullscreenOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0); color: white; z-index: 1000; justify-content: center; align-items: center; flex-direction: column;">
-        <button onclick="closeOverlay()" style="position: absolute; top: 20px; right: 20px; font-size: 24px; color: white; background: transparent; border: none; cursor: pointer;">&times;</button>
-        
-        <div  id="overlayContent" style="width: 100%; height: 100%; padding: 0px;">
-          <iframe src="https://vinc.ee/blog/index.html" width="100%" height="100%" frameborder="0" style=" background: #00000000;"></iframe>
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-around; margin-top: 20px;">
+          <button onclick="openOverlay()" style="border: 2px dashed;padding: 10px 20px;font-size: 16px;color: #fff;border-color:#fd9fc9df;background-color: transparent;cursor: pointer;margin: 10px;width: 120px;text-align: center;">░░░░</button>
+          <button style="border: 2px dashed;padding: 10px 20px;font-size: 16px;color: #fff;border-color:#a27ad3;background-color: transparent;cursor: pointer;margin: 10px;width: 120px;text-align: center;">░░░░</button>
+          <button style="border: 2px dashed;padding: 10px 20px;font-size: 16px;color: #fff;border-color: #67a6b9;background-color: transparent;cursor: pointer;margin: 10px;width: 120px;text-align: center;">░░░░</button>
+          <button style="border: 2px dashed;padding: 10px 20px;font-size: 16px;color: #fff;border-color: #bad6cad6;background-color: transparent;cursor: pointer;margin: 10px;width: 120px;text-align: center;">░░░░</button>
+        </div>
+        <br><p style="color:#f3eded00">.</p><br>
+        <div class="animeTWD"><div class="animeBlurTWD"></div></div>
+        <div id="footer" style=" padding-bottom: 9px; text-align: center; color: #ffffffb1; font-size: 13px; bottom: 0 !important; font-family: Arial, Helvetica, sans-serif; font-weight: 300;">
+          <a>© <script>document.write(new Date().getFullYear());</script> ~ Vincenzo Didonna</a>
         </div>
       </div>
-      
+    </div>
 
-      
-    <div class="desktop-content ">
+    <div id="fullscreenOverlay" style="display: none; position: fixed; top: 0; left: 0;width: 100%;height: 100%;background: rgba(0, 0, 0, 0);color: white;z-index: 1000;justify-content: center;align-items: center;flex-direction: column;">
+      <button onclick="closeOverlay()" style="position: absolute;top: 20px;right: 20px;font-size: 24px;color: white;background: transparent;border: none;cursor: pointer;">&times;</button>
+      <div id="overlayContent" style="width: 100%; height: 100%; padding: 0px;">
+        <iframe src="blog.vinc.ee" width="100%" height="100%" frameborder="0" style=" background: #00000000;"></iframe>
+      </div>
+    </div>
+
+    <div class="desktop-content">
       <link href="./index.css" rel="stylesheet" />
-
-      <div class="home-container1 ">
+      <div class="home-container1">
         <div class="home-container2">
-          <div style="background-image: url('linee-lato.svg'); animation-duration: 1s;" class="animate animate__jackInTheBox  home-container2-sovrapposto"></div>
-          <div style="background-image: url('linee-sotto.svg'); animation-duration: 1s;" class="animate animate__rotateInUpLeft  home-container2-sovrapposto"></div>
-          <div class="home-container3 always-visible">
-            <script>
-              window.addEventListener('load', function() {
-                var gifElement1 = document.getElementById('home-gif');
-                var gifElement2 = document.getElementById('home-gif2');
-                
-                // Controlla se gifElement1 e gifElement2 sono presenti nella pagina
-                if (gifElement1) {
-                  var gifSrc1 = gifElement1.src;
-                  var randomParam1 = (gifSrc1.includes('?') ? '&' : '?') + 'rand=' + Math.floor(Math.random() * 1000);
-                  gifElement1.src = gifSrc1 + randomParam1;
-                }
-            
-                if (gifElement2) {
-                  var gifSrc2 = gifElement2.src;
-                  var randomParam2 = (gifSrc2.includes('?') ? '&' : '?') + 'rand=' + Math.floor(Math.random() * 1000);
-                  gifElement2.src = gifSrc2 + randomParam2;
-                }
-              });
-            </script>
-            
-            
-            
-            <img id="home-gif"  src="/images/riso1.gif" alt="image" class="home-image" draggable="false" />
+          <div style="background-image: url('/images/linee-lato.svg'); animation-duration: 0.9s;" class="animate home-container2-sovrapposto"></div>
+          <div style="background-image: url('images/linee-sotto.svg'); animation-duration: 0.8s;" class="animate home-container2-sovrapposto"></div>
+          <div class="animate class="home-container3 always-visible">
+            <img id="home-gif" loading="lazy" src="/images/riso1.gif" alt="image" class="home-image" draggable="false" />
           </div>
           <div class="home-container4">
             <h1 class="home-text1">
-              <span class="home-text2">vinc.ee  ݁₊ ⊹ .  ݁ </span>
-              <br class="home-text3" />
-              <br />
+              <span class="home-text2">vinc.ee . ݁₊ ⊹ . ݁</span>
+              <br class="home-text3" /><br />
             </h1>
             <div class="home-container5">
               <div class="home-container6">
                 <div class="home-container7">
-                  <span class="home-text5 animate__animated animate__zoomInDown">
+                  <span class="home-text5">
                     <div class="skeleton-paragraph"></div>
                     <div class="skeleton-paragraph"></div>
                     <div class="skeleton-paragraph"></div>
@@ -386,72 +228,54 @@
                   </span>
                 </div>
               </div>
-              
+
               <div class="home-container8 always-visible">
-                
-                <button onclick="openOverlay()" class="home-button1 button">
-                  Blog
-                </button>
-                <a href="https://blog.vinc.ee/" class="home-button2 button">
-                  ░░░░
-                </a>
-                <a href="https://blog.vinc.ee/" class="home-button3 button">
-                  ░░░░
-                </a>
-                <a href="https://blog.vinc.ee/" class="home-button4 button">
-                  ░░░░
-                </a>
+                <button onclick="openOverlay()" class="home-button1 button">Blog</button>
+                <a href="https://blog.vinc.ee/" class="home-button2 button">░░░░</a>
+                <a href="https://blog.vinc.ee/" class="home-button3 button">░░░░</a>
+                <a href="https://blog.vinc.ee/" class="home-button4 button">░░░░</a>
               </div>
             </div>
           </div>
         </div>
-        <div id="footer" style=" padding-bottom: 9px; text-align: center; color: #ffffffb5; position:fixed;bottom:0;left:0;right:0;height:30px; font-size: 12px; bottom: 0 !important; font-family: Arial, Helvetica, sans-serif; font-weight: 100;">
+        <div id="footer" style="padding-bottom: 9px; text-align: center; color: #ffffffb5; position:fixed;bottom:0;left:0;right:0;height:30px; font-size: 12px; font-family: Arial, Helvetica, sans-serif; font-weight: 100;">
           <a>© <script>document.write(new Date().getFullYear());</script> ~ Vincenzo Didonna</a>
+        </div>
       </div>
-      
     </div>
 
-    
-
-    
-
     <script>
-      // Funzione che ritorna una promessa per verificare il caricamento di tutte le immagini
-      function loadImages() {
-        const images = document.querySelectorAll("img");
-        return Promise.all(Array.from(images).map(img => {
-          return new Promise(resolve => {
-            if (img.complete) {
-              resolve();
-            } else {
-              img.addEventListener("load", resolve);
-              img.addEventListener("error", resolve);
-            }
-          });
-        }));
-      }
+      document.addEventListener('DOMContentLoaded', function() {
+        // Randomizzo le gif al DOMContentLoaded
+        var gifElement1 = document.getElementById('home-gif');
+        var gifElement2 = document.getElementById('home-gif2');
 
-      // Usa DOMContentLoaded per iniziare a verificare il caricamento degli elementi
-      document.addEventListener("DOMContentLoaded", function () {
-        // Aspetta il caricamento di tutte le immagini
-        loadImages().then(() => {
-          // Aggiungi la classe 'loaded' per mostrare il contenuto della pagina
-          document.body.classList.add("loaded");
+        if (gifElement1) {
+          var gifSrc1 = gifElement1.src;
+          gifElement1.src = gifSrc1 + (gifSrc1.includes('?') ? '&' : '?') + 'rand=' + Math.floor(Math.random() * 1000);
+        }
 
-          // Seleziona tutti gli elementi con la classe 'animate'
-          const animatedElements = document.querySelectorAll('.animate');
+        if (gifElement2) {
+          var gifSrc2 = gifElement2.src;
+          gifElement2.src = gifSrc2 + (gifSrc2.includes('?') ? '&' : '?') + 'rand=' + Math.floor(Math.random() * 1000);
+        }
+      });
 
-          // Itera su ciascun elemento e aggiungi le classi di animazione
-          animatedElements.forEach((el, index) => {
-            // Aggiungi la classe 'animate__animated' e la specifica animazione
-            // Puoi personalizzare l'animazione per ogni elemento se necessario
-            el.classList.add('animate__animated'); // Esempio con 'fadeIn'
-
-            
-          });
+      window.addEventListener('load', function () {
+        const animatedElements = document.querySelectorAll('.animate');
+        animatedElements.forEach(el => {
+          let bgImage = window.getComputedStyle(el).getPropertyValue('background-image');
+          if(bgImage.includes('linee-lato')){
+            el.classList.add('animate__animated', 'animate__jackInTheBox');
+          } else if(bgImage.includes('linee-sotto')){
+            el.classList.add('animate__animated', 'animate__rotateInUpLeft');
+          } else {
+            el.classList.add('animate__animated', 'animate__fadeIn');
+          }
         });
+
+        document.body.classList.add("loaded");
       });
     </script>
-      
-  </body>
+</body>
 </html>
