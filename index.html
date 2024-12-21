@@ -255,10 +255,7 @@
           gifElement1.src = gifSrc1 + (gifSrc1.includes('?') ? '&' : '?') + 'rand=' + Math.floor(Math.random() * 1000);
         }
 
-        if (gifElement2) {
-          var gifSrc2 = gifElement2.src;
-          gifElement2.src = gifSrc2 + (gifSrc2.includes('?') ? '&' : '?') + 'rand=' + Math.floor(Math.random() * 1000);
-        }
+        
       });
 
       window.addEventListener('load', function () {
