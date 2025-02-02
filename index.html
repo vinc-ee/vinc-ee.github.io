@@ -26,7 +26,6 @@
     :root {
       color-scheme: dark;
     }
-
     .animate {
       animation-play-state: paused; /* Blocca le animazioni inizialmente */
       opacity: 0; /* Nasconde gli elementi fino a quando la pagina è pronta */
@@ -252,6 +251,17 @@
         }
       });
       document.body.classList.add("loaded");
+    });
+  </script>
+
+  <!-- Script per resettare l'animazione della webp (anche su F5) -->
+  <script>
+    window.addEventListener('pageshow', function(event) {
+      var img = document.getElementById('home-gif');
+      if (img) {
+        var newImg = img.cloneNode(true);
+        img.parentNode.replaceChild(newImg, img);
+      }
     });
   </script>
 </body>
