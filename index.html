@@ -6,6 +6,7 @@
     <meta name="darkreader-lock"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
+    <link rel="preload" as="image" href="/images/riso1.webp">
     <link rel="icon" href="/icons/favicon-32x32.png" type="image/png">
     <link rel="icon" href="/icons/favicon.ico" type="image/x-icon">
 
@@ -21,6 +22,16 @@
     </style>
 
     <style data-tag="default-style-sheet">
+      .animate {
+        animation-play-state: paused; /* Blocca le animazioni inizialmente */
+        opacity: 0; /* Nasconde gli elementi fino a quando la pagina è pronta */
+      }
+
+      body.loaded .animate {
+        animation-play-state: running; /* Fa partire le animazioni solo dopo il caricamento */
+        opacity: 1; /* Mostra gli elementi */
+      }
+
       html {
         font-family: Inter;
         font-size: 16px;
@@ -205,7 +216,7 @@
           <div style="background-image: url('/images/linee-lato.svg'); animation-duration: 0.9s;" class="animate home-container2-sovrapposto"></div>
           <div style="background-image: url('images/linee-sotto.svg'); animation-duration: 0.8s;" class="animate home-container2-sovrapposto"></div>
           <div class="animate class="home-container3 always-visible">
-            <img id="home-gif" loading="lazy" src="/images/riso1.gif" alt="image" class="home-image" draggable="false" />
+            <img id="home-gif" src="/images/riso1.webp" alt="image" class="home-image" draggable="false" />
           </div>
           <div class="home-container4">
             <h1 class="home-text1">
@@ -245,7 +256,7 @@
     </div>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
+      window.addEventListener('load', function() {
         // Randomizzo le gif al DOMContentLoaded
         var gifElement1 = document.getElementById('home-gif');
         var gifElement2 = document.getElementById('home-gif2');
