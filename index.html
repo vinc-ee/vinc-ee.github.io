@@ -1,289 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>vinc.ee  ݁ ⊹ .  ݁ </title>
-    <meta name="robots" content="noindex">
-    <meta name="darkreader-lock"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="utf-8" />
-    <link rel="preload" as="image" href="/images/riso1.webp">
-    <link rel="icon" href="/icons/favicon-32x32.png" type="image/png">
-    <link rel="icon" href="/icons/favicon.ico" type="image/x-icon">
+  <title>vinc.ee  ݁ ⊹ .  ݁ </title>
+  <meta name="robots" content="noindex">
+  <meta name="darkreader-lock"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <!-- Preload con id per aggiornare anche l'URL -->
+  <link id="preloadImg" rel="preload" as="image" href="/images/riso1.webp">
+  <link rel="icon" href="/icons/favicon-32x32.png" type="image/png">
+  <link rel="icon" href="/icons/favicon.ico" type="image/x-icon">
 
-    <style data-tag="reset-style-sheet">
-      html { line-height: 1.15;} 
-      body { margin: 0;} 
-      * { box-sizing: border-box; border-width: 0; border-style: solid;} 
-      p, li, ul, pre, div, h1, h2, h3, h4, h5, h6, figure, blockquote, figcaption { margin: 0; padding: 0;}
-      button { background-color: transparent;} 
-      a { color: inherit; text-decoration: inherit;} 
-      img { display: block;} 
-      html { scroll-behavior: smooth;}
-    </style>
+  <style data-tag="reset-style-sheet">
+    html { line-height: 1.15;} 
+    body { margin: 0;} 
+    * { box-sizing: border-box; border-width: 0; border-style: solid;} 
+    p, li, ul, pre, div, h1, h2, h3, h4, h5, h6, figure, blockquote, figcaption { margin: 0; padding: 0;}
+    button { background-color: transparent;} 
+    a { color: inherit; text-decoration: inherit;} 
+    img { display: block;} 
+    html { scroll-behavior: smooth;}
+  </style>
 
-    <style data-tag="default-style-sheet">
-      .animate {
-        animation-play-state: paused; /* Blocca le animazioni inizialmente */
-        opacity: 0; /* Nasconde gli elementi fino a quando la pagina è pronta */
-      }
+  <style data-tag="default-style-sheet">
+    .animate {
+      animation-play-state: paused; /* Blocca le animazioni inizialmente */
+      opacity: 0; /* Nasconde gli elementi fino a quando la pagina è pronta */
+    }
 
-      body.loaded .animate {
-        animation-play-state: running; /* Fa partire le animazioni solo dopo il caricamento */
-        opacity: 1; /* Mostra gli elementi */
-      }
+    body.loaded .animate {
+      animation-play-state: running; /* Fa partire le animazioni solo dopo il caricamento */
+      opacity: 1; /* Mostra gli elementi */
+    }
 
-      html {
-        font-family: Inter;
-        font-size: 16px;
-      }
+    html {
+      font-family: Inter;
+      font-size: 16px;
+    }
 
-      body {
-        visibility: hidden; 
-        background: black;
-        overflow: hidden;
-        margin: 0;
-        height: 100vh;
-        transition: background-color 0.9s ease-in-out;
-      }
-      
-      body.loaded {
-        visibility: visible;
-        background-color: rgba(0,0,0,0);
-      }
+    body {
+      visibility: hidden; 
+      background: black;
+      overflow: hidden;
+      margin: 0;
+      height: 100vh;
+      transition: background-color 0.9s ease-in-out;
+    }
+    
+    body.loaded {
+      visibility: visible;
+      background-color: rgba(0,0,0,0);
+    }
 
-      .animate {
-        opacity: 0;
-      }
+    .animate {
+      opacity: 0;
+    }
 
-      .desktop-hidden, .mobile-hidden {
-        opacity: 0;
-        pointer-events: none;
-        visibility: hidden;
-      }
+    .desktop-hidden, .mobile-hidden {
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+    }
 
-      .always-visible {
-        position: absolute;
-        visibility: visible;
-      }
+    .always-visible {
+      position: absolute;
+      visibility: visible;
+    }
 
-      .container {
-        position: fixed; 
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-      }
+    .container {
+      position: fixed; 
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
 
+    .desktop-content {
+      display: block;
+    }
+
+    .mobile-content {
+      display: none;
+    }
+
+    @media screen and (max-width: 768px) {
       .desktop-content {
-        display: block;
-      }
-
-      .mobile-content {
         display: none;
       }
-
-      @media screen and (max-width: 768px) {
-        .desktop-content {
-          display: none;
-        }
-        .mobile-content {
-          display: block;
-        }
+      .mobile-content {
+        display: block;
       }
+    }
 
+    .home-text2 {
+      font-size: 2rem;
+      font-weight: bold;
+      background: linear-gradient(to right, #feb1d9, #90e5ed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
 
-      .home-text2 {
-            font-size: 2rem;
-            font-weight: bold;
-            background: linear-gradient(to right, #feb1d9, #90e5ed); /* Colori rosa e azzurrino */
-            -webkit-background-clip: text; /* Applicare gradiente solo al testo */
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-        }
+    .skeleton-paragraph {
+      width: 80%;
+      height: 10px;
+      background: #f3eded3b;
+      margin: 8px 0;
+    }
+    .skeleton-header {
+      width: 40%;
+      height: 15px;
+      background: #f3eded3b;
+      margin: 8px 0;
+    }
+  </style>
 
-      .skeleton-paragraph {
-        width: 80%;
-        height: 10px;
-        background: #f3eded3b;
-        margin: 8px 0;
-      }
-      .skeleton-header {
-        width: 40%;
-        height: 15px;
-        background: #f3eded3b;
-        margin: 8px 0;
-      }
-    </style>
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 </head>
 <script>
-    function openOverlay() {
+  function openOverlay() {
+    const overlay = document.getElementById("fullscreenOverlay");
+    overlay.style.display = "flex";
+    document.querySelector('.desktop-content').classList.add('desktop-hidden');
+    document.querySelector('.mobile-content').classList.add('mobile-hidden');
+    history.pushState({ overlayOpen: true }, "Overlay Open");
+  }
+
+  function closeOverlay() {
+    history.back();
+  }
+
+  window.onpopstate = function(event) {
+    if (event.state && event.state.overlayOpen) {
       const overlay = document.getElementById("fullscreenOverlay");
       overlay.style.display = "flex";
-      document.querySelector('.desktop-content').classList.add('desktop-hidden');
-      document.querySelector('.mobile-content').classList.add('mobile-hidden');
-      history.pushState({ overlayOpen: true }, "Overlay Open");
+    } else {
+      document.querySelector('.desktop-content').classList.remove('desktop-hidden');
+      document.querySelector('.mobile-content').classList.remove('mobile-hidden');
+      document.getElementById("fullscreenOverlay").style.display = "none";
     }
-
-    function closeOverlay() {
-      history.back();
-    }
-
-    window.onpopstate = function(event) {
-      if (event.state && event.state.overlayOpen) {
-        const overlay = document.getElementById("fullscreenOverlay");
-        overlay.style.display = "flex";
-      } else {
-        document.querySelector('.desktop-content').classList.remove('desktop-hidden');
-        document.querySelector('.mobile-content').classList.remove('mobile-hidden');
-        document.getElementById("fullscreenOverlay").style.display = "none";
-      }
-    };
+  };
 </script>
 <body>
-    <div style="z-index: -2;" class="radial-gradient"></div>
-    <section class="container">
-      <div class="glows">
-        <div class="core-cloud"></div>
+  <div style="z-index: -2;" class="radial-gradient"></div>
+  <section class="container">
+    <div class="glows">
+      <div class="core-cloud"></div>
+    </div>
+  </section>
+
+  <div class="mobile-content">
+    <div style="display: flex;flex-direction: column;justify-content: space-between;height: 100%;padding: 20px;color: #fff5f5;text-align: center;">
+      <img
+        loading="lazy"
+        src="/images/riso1-mobile.gif"
+        alt="Fiore GIF"
+        id="home-gif2"
+        class="home-gif2"
+        style="width: 150px; height: 120px; margin: 10px auto; "
+      />
+
+      <h1 style="font-family:DepartureMono; font-size: 24px; letter-spacing: 2px; margin-bottom: 1px;">
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <span style=" font-size: 24px; letter-spacing: 2px; margin-bottom: 1px; color: #f3ededb9;" class="inline-text"> ݁⊹ ₊ </span>
+          <span style="font-family:DepartureMono; font-size: 24px; letter-spacing: 2px; margin-bottom: 1px; color: #f3eded;" class="inline-text">vinc.ee</span>
+          <span style=" font-size: 24px; letter-spacing: 2px; margin-bottom: 1px; color: #f3ededb9;" class="inline-text">₊ ⊹ ݁ </span>
+        </div>
+      </h1>
+      <hr style="border: none; border-top: 1px solid #f3eded; width: 80%; margin: 10px auto;" />
+
+      <div style="font-size: 16px;line-height: 1.6;letter-spacing: 2px;text-align: left;display: inline-block;color: #f3eded;padding: 5px;margin: 5px auto;width: 100%;">
+        <div class="skeleton-paragraph"></div>
+        <div class="skeleton-paragraph"></div>
+        <div class="skeleton-paragraph"></div>
+        <div class="skeleton-paragraph"></div>
+        <div class="skeleton-paragraph"></div>
+        <div class="skeleton-paragraph"></div>
+        <br>
+        <div class="skeleton-paragraph"></div>
+        <div class="skeleton-paragraph"></div>
+        <div class="skeleton-paragraph"></div>
+        <div class="skeleton-paragraph"></div>
+        <div class="skeleton-header"></div>
       </div>
-    </section>
 
-    <div class="mobile-content">
-      <div style="display: flex;flex-direction: column;justify-content: space-between;height: 100%;padding: 20px;color: #fff5f5;text-align: center;">
-        <img
-          loading="lazy"
-          src="/images/riso1-mobile.gif"
-          alt="Fiore GIF"
-          id="home-gif2"
-          class="home-gif2"
-          style="width: 150px; height: 120px; margin: 10px auto; "
-        />
-
-        <h1 style="font-family:DepartureMono; font-size: 24px; letter-spacing: 2px; margin-bottom: 1px;">
-          <div style="display: flex; justify-content: center; align-items: center;">
-            <span style=" font-size: 24px; letter-spacing: 2px; margin-bottom: 1px; color: #f3ededb9;" class="inline-text"> ݁⊹ ₊ </span>
-            <span style="font-family:DepartureMono; font-size: 24px; letter-spacing: 2px; margin-bottom: 1px; color: #f3eded;" class="inline-text">vinc.ee</span>
-            <span style=" font-size: 24px; letter-spacing: 2px; margin-bottom: 1px; color: #f3ededb9;" class="inline-text">₊ ⊹ ݁ </span>
-          </div>
-        </h1>
-        <hr style="border: none; border-top: 1px solid #f3eded; width: 80%; margin: 10px auto;" />
-
-        <div style="font-size: 16px;line-height: 1.6;letter-spacing: 2px;text-align: left;display: inline-block;color: #f3eded;padding: 5px;margin: 5px auto;width: 100%;">
-          <div class="skeleton-paragraph"></div>
-          <div class="skeleton-paragraph"></div>
-          <div class="skeleton-paragraph"></div>
-          <div class="skeleton-paragraph"></div>
-          <div class="skeleton-paragraph"></div>
-          <div class="skeleton-paragraph"></div>
-          <br>
-          <div class="skeleton-paragraph"></div>
-          <div class="skeleton-paragraph"></div>
-          <div class="skeleton-paragraph"></div>
-          <div class="skeleton-paragraph"></div>
-          <div class="skeleton-header"></div>
-        </div>
-
-        <div style="display: flex; flex-wrap: wrap; justify-content: space-around; margin-top: 20px;">
-          <button onclick="openOverlay()" style="border: 2px dashed;padding: 10px 20px;font-size: 16px;color: #fff;border-color:#fd9fc9df;background-color: transparent;cursor: pointer;margin: 10px;width: 120px;text-align: center;">░░░░</button>
-          <button style="border: 2px dashed;padding: 10px 20px;font-size: 16px;color: #fff;border-color:#a27ad3;background-color: transparent;cursor: pointer;margin: 10px;width: 120px;text-align: center;">░░░░</button>
-          <button style="border: 2px dashed;padding: 10px 20px;font-size: 16px;color: #fff;border-color: #67a6b9;background-color: transparent;cursor: pointer;margin: 10px;width: 120px;text-align: center;">░░░░</button>
-          <button style="border: 2px dashed;padding: 10px 20px;font-size: 16px;color: #fff;border-color: #bad6cad6;background-color: transparent;cursor: pointer;margin: 10px;width: 120px;text-align: center;">░░░░</button>
-        </div>
-        <br><p style="color:#f3eded00">.</p><br>
-        <div class="animeTWD"><div class="animeBlurTWD"></div></div>
-        <div id="footer" style=" padding-bottom: 9px; text-align: center; color: #ffffffb1; font-size: 13px; bottom: 0 !important; font-family: Arial, Helvetica, sans-serif; font-weight: 300;">
-          <a>© <script>document.write(new Date().getFullYear());</script> ~ Vincenzo Didonna</a>
-        </div>
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-around; margin-top: 20px;">
+        <button onclick="openOverlay()" style="border: 2px dashed;padding: 10px 20px;font-size: 16px;color: #fff;border-color:#fd9fc9df;background-color: transparent;cursor: pointer;margin: 10px;width: 120px;text-align: center;">░░░░</button>
+        <button style="border: 2px dashed;padding: 10px 20px;font-size: 16px;color: #fff;border-color:#a27ad3;background-color: transparent;cursor: pointer;margin: 10px;width: 120px;text-align: center;">░░░░</button>
+        <button style="border: 2px dashed;padding: 10px 20px;font-size: 16px;color: #fff;border-color: #67a6b9;background-color: transparent;cursor: pointer;margin: 10px;width: 120px;text-align: center;">░░░░</button>
+        <button style="border: 2px dashed;padding: 10px 20px;font-size: 16px;color: #fff;border-color: #bad6cad6;background-color: transparent;cursor: pointer;margin: 10px;width: 120px;text-align: center;">░░░░</button>
+      </div>
+      <br><p style="color:#f3eded00">.</p><br>
+      <div class="animeTWD"><div class="animeBlurTWD"></div></div>
+      <div id="footer" style=" padding-bottom: 9px; text-align: center; color: #ffffffb1; font-size: 13px; bottom: 0 !important; font-family: Arial, Helvetica, sans-serif; font-weight: 300;">
+        <a>© <script>document.write(new Date().getFullYear());</script> ~ Vincenzo Didonna</a>
       </div>
     </div>
+  </div>
 
-    <div id="fullscreenOverlay" style="display: none; position: fixed; top: 0; left: 0;width: 100%;height: 100%;background: rgba(0, 0, 0, 0);color: white;z-index: 1000;justify-content: center;align-items: center;flex-direction: column;">
-      <button onclick="closeOverlay()" style="position: absolute;top: 20px;right: 20px;font-size: 24px;color: white;background: transparent;border: none;cursor: pointer;">&times;</button>
-      <div id="overlayContent" style="width: 100%; height: 100%; padding: 0px;">
-        <iframe src="https://blog.vinc.ee" width="100%" height="100%" frameborder="0" style=" background: #00000000;"></iframe>
-      </div>
+  <div id="fullscreenOverlay" style="display: none; position: fixed; top: 0; left: 0;width: 100%;height: 100%;background: rgba(0, 0, 0, 0);color: white;z-index: 1000;justify-content: center;align-items: center;flex-direction: column;">
+    <button onclick="closeOverlay()" style="position: absolute;top: 20px;right: 20px;font-size: 24px;color: white;background: transparent;border: none;cursor: pointer;">&times;</button>
+    <div id="overlayContent" style="width: 100%; height: 100%; padding: 0px;">
+      <iframe src="https://blog.vinc.ee" width="100%" height="100%" frameborder="0" style=" background: #00000000;"></iframe>
     </div>
+  </div>
 
-    <div class="desktop-content">
-      <link href="./index.css" rel="stylesheet" />
-      <div class="home-container1">
-        <div class="home-container2">
-          <div style="background-image: url('/images/linee-lato.svg'); animation-duration: 0.9s;" class="animate home-container2-sovrapposto"></div>
-          <div style="background-image: url('images/linee-sotto.svg'); animation-duration: 0.8s;" class="animate home-container2-sovrapposto"></div>
-          <div class="animate class="home-container3 always-visible">
-            <img id="home-gif" src="/images/riso1.webp" alt="image" class="home-image" draggable="false" />
-          </div>
-          <div class="home-container4">
-            <h1 class="home-text1">
-              <span class="home-text2">vinc.ee . ݁₊ ⊹ . ݁</span>
-              <br class="home-text3" /><br />
-            </h1>
-            <div class="home-container5">
-              <div class="home-container6">
-                <div class="home-container7">
-                  <span class="home-text5">
-                    <div class="skeleton-paragraph"></div>
-                    <div class="skeleton-paragraph"></div>
-                    <div class="skeleton-paragraph"></div>
-                    <div class="skeleton-header"></div>
-                    <div class="skeleton-paragraph"></div>
-                    <div class="skeleton-paragraph"></div>
-                    <div class="skeleton-paragraph"></div>
-                    <div class="skeleton-header"></div>
-                    <p style="color: #a27ad300;">dummytextdummytextdummytextdummytextdummyte</p>
-                  </span>
-                </div>
+  <div class="desktop-content">
+    <link href="./index.css" rel="stylesheet" />
+    <div class="home-container1">
+      <div class="home-container2">
+        <div style="background-image: url('/images/linee-lato.svg'); animation-duration: 0.9s;" class="animate home-container2-sovrapposto"></div>
+        <div style="background-image: url('images/linee-sotto.svg'); animation-duration: 0.8s;" class="animate home-container2-sovrapposto"></div>
+        <div class="animate home-container3 always-visible">
+          <!-- Immagine che verrà aggiornata con il parametro random -->
+          <img id="home-gif" src="/images/riso1.webp" alt="image" class="home-image" draggable="false" />
+        </div>
+        <div class="home-container4">
+          <h1 class="home-text1">
+            <span class="home-text2">vinc.ee . ݁₊ ⊹ . ݁</span>
+            <br class="home-text3" /><br />
+          </h1>
+          <div class="home-container5">
+            <div class="home-container6">
+              <div class="home-container7">
+                <span class="home-text5">
+                  <div class="skeleton-paragraph"></div>
+                  <div class="skeleton-paragraph"></div>
+                  <div class="skeleton-paragraph"></div>
+                  <div class="skeleton-header"></div>
+                  <div class="skeleton-paragraph"></div>
+                  <div class="skeleton-paragraph"></div>
+                  <div class="skeleton-paragraph"></div>
+                  <div class="skeleton-header"></div>
+                  <p style="color: #a27ad300;">dummytextdummytextdummytextdummytextdummyte</p>
+                </span>
               </div>
+            </div>
 
-              <div class="home-container8 always-visible">
-                <button onclick="openOverlay()" class="home-button1 button">Blog</button>
-                <a href="#" class="home-button2 button">░░░░</a>
-                <a href="#" class="home-button3 button">░░░░</a>
-                <a href="#" class="home-button4 button">░░░░</a>
-              </div>
+            <div class="home-container8 always-visible">
+              <button onclick="openOverlay()" class="home-button1 button">Blog</button>
+              <a href="#" class="home-button2 button">░░░░</a>
+              <a href="#" class="home-button3 button">░░░░</a>
+              <a href="#" class="home-button4 button">░░░░</a>
             </div>
           </div>
         </div>
-        <div id="footer" style="padding-bottom: 9px; text-align: center; color: #ffffffb5; position:fixed;bottom:0;left:0;right:0;height:30px; font-size: 12px; font-family: Arial, Helvetica, sans-serif; font-weight: 100;">
-          <a>© <script>document.write(new Date().getFullYear());</script> ~ Vincenzo Didonna</a>
-        </div>
+      </div>
+      <div id="footer" style="padding-bottom: 9px; text-align: center; color: #ffffffb5; position:fixed;bottom:0;left:0;right:0;height:30px; font-size: 12px; font-family: Arial, Helvetica, sans-serif; font-weight: 100;">
+        <a>© <script>document.write(new Date().getFullYear());</script> ~ Vincenzo Didonna</a>
       </div>
     </div>
+  </div>
 
-    <script>
-      window.addEventListener('load', function() {
-        // Randomizzo le gif al DOMContentLoaded
-        var gifElement1 = document.getElementById('home-gif');
-        var gifElement2 = document.getElementById('home-gif2');
+  <!-- Script per aggiornare l'immagine e il preload con il parametro random -->
+  <script>
+    window.addEventListener('load', function() {
+      var randValue = Math.floor(Math.random() * 1000);
+      var gifElement = document.getElementById('home-gif');
+      var preloadLink = document.getElementById('preloadImg');
+      
+      if(gifElement) {
+        gifElement.src = gifElement.src + (gifElement.src.includes('?') ? '&' : '?') + 'rand=' + randValue;
+      }
+      if(preloadLink) {
+        preloadLink.href = preloadLink.href + (preloadLink.href.includes('?') ? '&' : '?') + 'rand=' + randValue;
+      }
+    });
 
-        if (gifElement1) {
-          var gifSrc1 = gifElement1.src;
-          gifElement1.src = gifSrc1 + (gifSrc1.includes('?') ? '&' : '?') + 'rand=' + Math.floor(Math.random() * 1000);
+    window.addEventListener('load', function () {
+      const animatedElements = document.querySelectorAll('.animate');
+      animatedElements.forEach(el => {
+        let bgImage = window.getComputedStyle(el).getPropertyValue('background-image');
+        if(bgImage.includes('linee-lato')){
+          el.classList.add('animate__animated', 'animate__jackInTheBox');
+        } else if(bgImage.includes('linee-sotto')){
+          el.classList.add('animate__animated', 'animate__rotateInUpLeft');
+        } else {
+          el.classList.add('animate__animated', 'animate__fadeIn');
         }
-
-        
       });
-
-      window.addEventListener('load', function () {
-        const animatedElements = document.querySelectorAll('.animate');
-        animatedElements.forEach(el => {
-          let bgImage = window.getComputedStyle(el).getPropertyValue('background-image');
-          if(bgImage.includes('linee-lato')){
-            el.classList.add('animate__animated', 'animate__jackInTheBox');
-          } else if(bgImage.includes('linee-sotto')){
-            el.classList.add('animate__animated', 'animate__rotateInUpLeft');
-          } else {
-            el.classList.add('animate__animated', 'animate__fadeIn');
-          }
-        });
-
-        document.body.classList.add("loaded");
-      });
-    </script>
+      document.body.classList.add("loaded");
+    });
+  </script>
 </body>
 </html>
