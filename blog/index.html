@@ -1,159 +1,192 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
-    <title>vinc.ee ݁ ⊹ . ݁</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="utf-8" />
-    <style>
-        @font-face {
-            font-family: 'DepartureMono';
-            src: url('../fonts/DepartureMono-Regular.woff2') format('woff2'),
-                 url('../fonts/DepartureMono-Regular.woff') format('woff'),
-                 url('../fonts/DepartureMono-Regular.otf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
+  <title>vinc.ee ݁ ⊹ . ݁</title>
+  <meta name="darkreader-lock">
+  <meta name="color-scheme" content="dark">
+  <meta name="supported-color-schemes" content="dark">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <!-- Link al font Inter tramite CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.css" />
 
-        body {
-            background-color: #9c202000;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-        }
+  <style>
+    @font-face {
+      font-family: 'DepartureMono';
+      src: url('../fonts/DepartureMono-Regular.woff2') format('woff2'),
+           url('../fonts/DepartureMono-Regular.woff') format('woff'),
+           url('../fonts/DepartureMono-Regular.otf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
 
-        .container {
-            width: 80%;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+    /* Impostiamo il font principale per il body */
+    body {
+      background-color: #9c202000;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+    }
 
-        .section {
-            margin: 40px 0;
-        }
+    .container {
+      width: 80%;
+      max-width: 800px;
+      margin: 0 auto;
+    }
 
-        .line-with-text {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            margin-bottom: 15px;
-        }
+    .section {
+      margin: 40px 0;
+    }
 
-        /* Linee con dissolvenza solo ai bordi */
-        .line {
-            height: 2px; /* Spessore linea */
-            width: 50%;
-            background: linear-gradient(to right, transparent, #fd9fc9 20%, #fd9fc9 80%, transparent);
-        }
+    .line-with-text {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 15px;
+    }
 
-        .line.red {
-            background: linear-gradient(to right, transparent, #b88eeb 20%, #b88eeb 80%, transparent);
-        }
+    /* Linee con dissolvenza solo ai bordi */
+    .line {
+      height: 2px; /* Spessore linea */
+      width: 50%;
+      background: linear-gradient(to right, transparent, #fd9fc9 20%, #fd9fc9 80%, transparent);
+    }
 
-        .line-with-text span {
-            margin: 0 15px;
-            color: #00bfa6f3;
-            font-weight: light;
-            font-size: 16px;
-            font-family: "DepartureMono";
-        }
+    .line.red {
+      background: linear-gradient(to right, transparent, #b88eeb 20%, #b88eeb 80%, transparent);
+    }
 
-        .line-with-text.red span {
-            color: #d3d37af0;
-        }
+    /* Usiamo DepartureMono per questo testo, se desiderato */
+    .line-with-text span {
+      margin: 0 15px;
+      color: #00bfa6f3;
+      font-weight: light;
+      font-size: 16px;
+      font-family: "DepartureMono";
+    }
 
-        a {
-            font-weight: light;
-            font-size: 16px;
-        }
+    .line-with-text.red span {
+      color: #d3d37af0;
+    }
 
-        .post {
-            display: flex;
-            align-items: center;
-            margin: 5px 0;
-            padding: 1px;
-            background-color: #ff2e2e00;
-        }
+    a {
+      font-weight: light;
+      font-size: 16px;
+    }
 
-        .post img {
-            width: 70px;
-            min-height: 45px;
-            margin-right: 15px;
-            border-radius: 4px;
-            transition: opacity 0.5s ease;
-            opacity: 0.6;
-        }
+    .post {
+      display: flex;
+      align-items: center;
+      margin: 5px 0;
+      padding: 1px;
+      background-color: #ff2e2e00;
+    }
 
-        .post img.loaded {
-            opacity: 1;
-        }
+    .post img {
+      width: 70px;
+      min-height: 45px;
+      margin-right: 15px;
+      border-radius: 4px;
+      transition: opacity 0.5s ease, transform 0.3s ease;
+      opacity: 0.6;
+    }
 
-        .post-title a {
-            font-size: 1em;
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+    .post img.loaded {
+      opacity: 1;
+    }
 
-        .post-title a:hover {
-            text-decoration: underline;
-            text-decoration-style: dotted;
-            text-decoration-color: aquamarine;
-        }
-    </style>
+    /* Effetto hover per ingrandire l'immagine */
+    .post img:hover {
+      transform: scale(1.1);
+    }
+
+    .post-title a {
+      font-size: 1em;
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s ease, text-decoration-thickness 0.3s ease;
+    }
+
+    /* Hover: rende la sottolineatura più visibile */
+    .post-title a:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-decoration-style: solid;
+      text-decoration-color: aquamarine;
+      color: #fff;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Sezione con linea verde -->
-        <div class="section">
-            <div class="line-with-text">
-                <div class="line" id="line-green-left"></div>
-                <span><p style="white-space: nowrap;">Writeups</p></span>
-                <div class="line" id="line-green-right"></div>
-            </div>
-            <div class="post">
-                <img style="border-radius: 7px;" src="example-min.webp" data-src="example.webp" alt="?">
-                <div class="post-title"><a href="/article1/">Phasellus volutpat porttitor felis eu consequat</a></div>
-            </div>
-            <div class="post">
-                <img style="border-radius: 7px;" src="example-min.webp" data-src="example.webp" alt="?">
-                <div class="post-title"><a href="/article1/">Cras elit diam, fringilla non laoreet et</a></div>
-            </div>
+  <div class="container">
+    <!-- Sezione con linea verde -->
+    <div class="section">
+      <div class="line-with-text">
+        <div class="line" id="line-green-left"></div>
+        <span><p style="white-space: nowrap;">Writeups</p></span>
+        <div class="line" id="line-green-right"></div>
+      </div>
+      <div class="post">
+        <a href="/blog/article1/">
+          <img style="border-radius: 7px;" src="example-min.webp" data-src="example.webp" alt="?">
+        </a>
+        <div class="post-title">
+          <a href="/blog/article1/">Phasellus volutpat porttitor felis eu consequat</a>
         </div>
-
-        <!-- Sezione con linea rossa -->
-        <div class="section">
-            <div class="line-with-text red">
-                <div class="line red" id="line-red-left"></div>
-                <span><p style="white-space: nowrap;">Off-topic</p></span>
-                <div class="line red" id="line-red-right"></div>
-            </div>
-            <div class="post">
-                <img style="border-radius: 7px;" src="example-min.webp" data-src="example.webp" alt="?">
-                <div class="post-title"><a href="/article1/">hendrerit vehicula erat. Sed ut eros</a></div>
-            </div>
-            <div class="post">
-                <img style="border-radius: 7px;" src="example-min.webp" data-src="example.webp" alt="?">
-                <div class="post-title"><a href="/article1/">rhoncus turpis cursus id. Vestibulum</a></div>
-            </div>
+      </div>
+      <div class="post">
+        <a href="/blog/article1/">
+          <img style="border-radius: 7px;" src="example-min.webp" data-src="example.webp" alt="?">
+        </a>
+        <div class="post-title">
+          <a href="/blog/article1/">Cras elit diam, fringilla non laoreet et</a>
         </div>
+      </div>
     </div>
 
-    <script>
-        // Caricamento progressivo delle immagini
-        document.addEventListener("DOMContentLoaded", function() {
-            const images = document.querySelectorAll(".post img");
-            images.forEach(img => {
-                const highResSrc = img.getAttribute("data-src");
-                const highResImg = new Image();
-                highResImg.src = highResSrc;
-                highResImg.onload = function() {
-                    img.src = highResSrc;
-                    img.classList.add("loaded");
-                };
-            });
-        });
-    </script>
+    <!-- Sezione con linea rossa -->
+    <div class="section">
+      <div class="line-with-text red">
+        <div class="line red" id="line-red-left"></div>
+        <span><p style="white-space: nowrap;">Off-topic</p></span>
+        <div class="line red" id="line-red-right"></div>
+      </div>
+      <div class="post">
+        <a href="/blog/article1/">
+          <img style="border-radius: 7px;" src="example-min.webp" data-src="example.webp" alt="?">
+        </a>
+        <div class="post-title">
+          <a href="/blog/article1/">hendrerit vehicula erat. Sed ut eros</a>
+        </div>
+      </div>
+      <div class="post">
+        <a href="/blog/article1/">
+          <img style="border-radius: 7px;" src="example-min.webp" data-src="example.webp" alt="?">
+        </a>
+        <div class="post-title">
+          <a href="/blog/article1/">rhoncus turpis cursus id. Vestibulum</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Caricamento progressivo delle immagini
+    document.addEventListener("DOMContentLoaded", function() {
+      const images = document.querySelectorAll(".post img");
+      images.forEach(img => {
+        const highResSrc = img.getAttribute("data-src");
+        const highResImg = new Image();
+        highResImg.src = highResSrc;
+        highResImg.onload = function() {
+          img.src = highResSrc;
+          img.classList.add("loaded");
+        };
+      });
+    });
+  </script>
 </body>
 </html>
