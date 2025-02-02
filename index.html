@@ -3,85 +3,80 @@
 <head>
   <title>vinc.ee  ݁ ⊹ .  ݁ </title>
   <meta name="robots" content="noindex">
-  <meta name="darkreader-lock"> 
+  <meta name="darkreader-lock">
+  <meta name="color-scheme" content="dark">
+  <meta name="supported-color-schemes" content="dark">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta charset="utf-8" />
   <link rel="icon" href="/icons/favicon-32x32.png" type="image/png">
   <link rel="icon" href="/icons/favicon.ico" type="image/x-icon">
 
   <style data-tag="reset-style-sheet">
-    html { line-height: 1.15;} 
-    body { margin: 0;} 
-    * { box-sizing: border-box; border-width: 0; border-style: solid;} 
-    p, li, ul, pre, div, h1, h2, h3, h4, h5, h6, figure, blockquote, figcaption { margin: 0; padding: 0;}
-    button { background-color: transparent;} 
-    a { color: inherit; text-decoration: inherit;} 
-    img { display: block;} 
-    html { scroll-behavior: smooth;}
+    html { line-height: 1.15; }
+    body { margin: 0; }
+    * { box-sizing: border-box; border-width: 0; border-style: solid; }
+    p, li, ul, pre, div, h1, h2, h3, h4, h5, h6, figure, blockquote, figcaption { margin: 0; padding: 0; }
+    button { background-color: transparent; }
+    a { color: inherit; text-decoration: inherit; }
+    img { display: block; }
+    html { scroll-behavior: smooth; }
   </style>
 
   <style data-tag="default-style-sheet">
+    :root {
+      color-scheme: dark;
+    }
+
     .animate {
       animation-play-state: paused; /* Blocca le animazioni inizialmente */
       opacity: 0; /* Nasconde gli elementi fino a quando la pagina è pronta */
     }
-
     body.loaded .animate {
       animation-play-state: running; /* Fa partire le animazioni solo dopo il caricamento */
       opacity: 1; /* Mostra gli elementi */
     }
-
     html {
       font-family: Inter;
       font-size: 16px;
     }
-
     body {
-      visibility: hidden; 
+      visibility: hidden;
       background: black;
       overflow: hidden;
       margin: 0;
       height: 100vh;
       transition: background-color 0.9s ease-in-out;
     }
-    
     body.loaded {
       visibility: visible;
       background-color: rgba(0,0,0,0);
     }
-
     .animate {
       opacity: 0;
     }
-
     .desktop-hidden, .mobile-hidden {
       opacity: 0;
       pointer-events: none;
       visibility: hidden;
     }
-
     .always-visible {
       position: absolute;
       visibility: visible;
     }
-
     .container {
-      position: fixed; 
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       z-index: -1;
     }
-
     .desktop-content {
       display: block;
     }
-
     .mobile-content {
       display: none;
     }
-
     @media screen and (max-width: 768px) {
       .desktop-content {
         display: none;
@@ -90,7 +85,6 @@
         display: block;
       }
     }
-
     .home-text2 {
       font-size: 2rem;
       font-weight: bold;
@@ -99,7 +93,6 @@
       -webkit-text-fill-color: transparent;
       display: inline-block;
     }
-
     .skeleton-paragraph {
       width: 80%;
       height: 10px;
@@ -114,11 +107,9 @@
     }
   </style>
 
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
+
 <script>
   function openOverlay() {
     const overlay = document.getElementById("fullscreenOverlay");
@@ -127,11 +118,9 @@
     document.querySelector('.mobile-content').classList.add('mobile-hidden');
     history.pushState({ overlayOpen: true }, "Overlay Open");
   }
-
   function closeOverlay() {
     history.back();
   }
-
   window.onpopstate = function(event) {
     if (event.state && event.state.overlayOpen) {
       const overlay = document.getElementById("fullscreenOverlay");
@@ -143,6 +132,7 @@
     }
   };
 </script>
+
 <body>
   <div style="z-index: -2;" class="radial-gradient"></div>
   <section class="container">
@@ -152,26 +142,17 @@
   </section>
 
   <div class="mobile-content">
-    <div style="display: flex;flex-direction: column;justify-content: space-between;height: 100%;padding: 20px;color: #fff5f5;text-align: center;">
-      <img
-        loading="lazy"
-        src="/images/riso1-mobile.gif"
-        alt="Fiore GIF"
-        id="home-gif2"
-        class="home-gif2"
-        style="width: 150px; height: 120px; margin: 10px auto; "
-      />
-
+    <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%; padding: 20px; color: #fff5f5; text-align: center;">
+      <img loading="lazy" src="/images/riso1-mobile.gif" alt="Fiore GIF" id="home-gif2" class="home-gif2" style="width: 150px; height: 120px; margin: 10px auto;" />
       <h1 style="font-family:DepartureMono; font-size: 24px; letter-spacing: 2px; margin-bottom: 1px;">
         <div style="display: flex; justify-content: center; align-items: center;">
-          <span style=" font-size: 24px; letter-spacing: 2px; margin-bottom: 1px; color: #f3ededb9;" class="inline-text"> ݁⊹ ₊ </span>
+          <span style="font-size: 24px; letter-spacing: 2px; margin-bottom: 1px; color: #f3ededb9;" class="inline-text"> ݁⊹ ₊ </span>
           <span style="font-family:DepartureMono; font-size: 24px; letter-spacing: 2px; margin-bottom: 1px; color: #f3eded;" class="inline-text">vinc.ee</span>
-          <span style=" font-size: 24px; letter-spacing: 2px; margin-bottom: 1px; color: #f3ededb9;" class="inline-text">₊ ⊹ ݁ </span>
+          <span style="font-size: 24px; letter-spacing: 2px; margin-bottom: 1px; color: #f3ededb9;" class="inline-text">₊ ⊹ ݁ </span>
         </div>
       </h1>
       <hr style="border: none; border-top: 1px solid #f3eded; width: 80%; margin: 10px auto;" />
-
-      <div style="font-size: 16px;line-height: 1.6;letter-spacing: 2px;text-align: left;display: inline-block;color: #f3eded;padding: 5px;margin: 5px auto;width: 100%;">
+      <div style="font-size: 16px; line-height: 1.6; letter-spacing: 2px; text-align: left; display: inline-block; color: #f3eded; padding: 5px; margin: 5px auto; width: 100%;">
         <div class="skeleton-paragraph"></div>
         <div class="skeleton-paragraph"></div>
         <div class="skeleton-paragraph"></div>
@@ -185,25 +166,28 @@
         <div class="skeleton-paragraph"></div>
         <div class="skeleton-header"></div>
       </div>
-
       <div style="display: flex; flex-wrap: wrap; justify-content: space-around; margin-top: 20px;">
-        <button onclick="openOverlay()" style="border: 2px dashed;padding: 10px 20px;font-size: 16px;color: #fff;border-color:#fd9fc9df;background-color: transparent;cursor: pointer;margin: 10px;width: 120px;text-align: center;">░░░░</button>
-        <button style="border: 2px dashed;padding: 10px 20px;font-size: 16px;color: #fff;border-color:#a27ad3;background-color: transparent;cursor: pointer;margin: 10px;width: 120px;text-align: center;">░░░░</button>
-        <button style="border: 2px dashed;padding: 10px 20px;font-size: 16px;color: #fff;border-color: #67a6b9;background-color: transparent;cursor: pointer;margin: 10px;width: 120px;text-align: center;">░░░░</button>
-        <button style="border: 2px dashed;padding: 10px 20px;font-size: 16px;color: #fff;border-color: #bad6cad6;background-color: transparent;cursor: pointer;margin: 10px;width: 120px;text-align: center;">░░░░</button>
+        <button onclick="openOverlay()" style="border: 2px dashed; padding: 10px 20px; font-size: 16px; color: #fff; border-color: #fd9fc9df; background-color: transparent; cursor: pointer; margin: 10px; width: 120px; text-align: center;">░░░░</button>
+        <button style="border: 2px dashed; padding: 10px 20px; font-size: 16px; color: #fff; border-color: #a27ad3; background-color: transparent; cursor: pointer; margin: 10px; width: 120px; text-align: center;">░░░░</button>
+        <button style="border: 2px dashed; padding: 10px 20px; font-size: 16px; color: #fff; border-color: #67a6b9; background-color: transparent; cursor: pointer; margin: 10px; width: 120px; text-align: center;">░░░░</button>
+        <button style="border: 2px dashed; padding: 10px 20px; font-size: 16px; color: #fff; border-color: #bad6cad6; background-color: transparent; cursor: pointer; margin: 10px; width: 120px; text-align: center;">░░░░</button>
       </div>
-      <br><p style="color:#f3eded00">.</p><br>
-      <div class="animeTWD"><div class="animeBlurTWD"></div></div>
-      <div id="footer" style=" padding-bottom: 9px; text-align: center; color: #ffffffb1; font-size: 13px; bottom: 0 !important; font-family: Arial, Helvetica, sans-serif; font-weight: 300;">
+      <br>
+      <p style="color:#f3eded00">.</p>
+      <br>
+      <div class="animeTWD">
+        <div class="animeBlurTWD"></div>
+      </div>
+      <div id="footer" style="padding-bottom: 9px; text-align: center; color: #ffffffb1; font-size: 13px; bottom: 0 !important; font-family: Arial, Helvetica, sans-serif; font-weight: 300;">
         <a>© <script>document.write(new Date().getFullYear());</script> ~ Vincenzo Didonna</a>
       </div>
     </div>
   </div>
 
-  <div id="fullscreenOverlay" style="display: none; position: fixed; top: 0; left: 0;width: 100%;height: 100%;background: rgba(0, 0, 0, 0);color: white;z-index: 1000;justify-content: center;align-items: center;flex-direction: column;">
-    <button onclick="closeOverlay()" style="position: absolute;top: 20px;right: 20px;font-size: 24px;color: white;background: transparent;border: none;cursor: pointer;">&times;</button>
+  <div id="fullscreenOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0); color: white; z-index: 1000; justify-content: center; align-items: center; flex-direction: column;">
+    <button onclick="closeOverlay()" style="position: absolute; top: 20px; right: 20px; font-size: 24px; color: white; background: transparent; border: none; cursor: pointer;">&times;</button>
     <div id="overlayContent" style="width: 100%; height: 100%; padding: 0px;">
-      <iframe src="https://blog.vinc.ee" width="100%" height="100%" frameborder="0" style=" background: #00000000;"></iframe>
+      <iframe src="https://blog.vinc.ee" width="100%" height="100%" frameborder="0" style="background: #00000000;"></iframe>
     </div>
   </div>
 
@@ -214,7 +198,7 @@
         <div style="background-image: url('/images/linee-lato.svg'); animation-duration: 0.9s;" class="animate home-container2-sovrapposto"></div>
         <div style="background-image: url('images/linee-sotto.svg'); animation-duration: 0.8s;" class="animate home-container2-sovrapposto"></div>
         <div class="animate home-container3 always-visible">
-          <!-- Immagine che verrà aggiornata con il parametro random -->
+          <!-- Immagine senza il parametro random -->
           <img id="home-gif" src="https://vinc.ee/images/riso1.webp" alt="image" class="home-image" draggable="false" />
         </div>
         <div class="home-container4">
@@ -238,7 +222,6 @@
                 </span>
               </div>
             </div>
-
             <div class="home-container8 always-visible">
               <button onclick="openOverlay()" class="home-button1 button">Blog</button>
               <a href="#" class="home-button2 button">░░░░</a>
@@ -248,27 +231,14 @@
           </div>
         </div>
       </div>
-      <div id="footer" style="padding-bottom: 9px; text-align: center; color: #ffffffb5; position:fixed;bottom:0;left:0;right:0;height:30px; font-size: 12px; font-family: Arial, Helvetica, sans-serif; font-weight: 100;">
+      <div id="footer" style="padding-bottom: 9px; text-align: center; color: #ffffffb5; position: fixed; bottom: 0; left: 0; right: 0; height: 30px; font-size: 12px; font-family: Arial, Helvetica, sans-serif; font-weight: 100;">
         <a>© <script>document.write(new Date().getFullYear());</script> ~ Vincenzo Didonna</a>
       </div>
     </div>
   </div>
 
-  <!-- Script per aggiornare l'immagine e il preload con il parametro random -->
+  <!-- Script per gestire le animazioni -->
   <script>
-    window.addEventListener('load', function() {
-      var randValue = Math.floor(Math.random() * 1000);
-      var gifElement = document.getElementById('home-gif');
-      var preloadLink = document.getElementById('preloadImg');
-      
-      if(gifElement) {
-        gifElement.src = gifElement.src + (gifElement.src.includes('?') ? '&' : '?') + 'rand=' + randValue;
-      }
-      if(preloadLink) {
-        preloadLink.href = preloadLink.href + (preloadLink.href.includes('?') ? '&' : '?') + 'rand=' + randValue;
-      }
-    });
-
     window.addEventListener('load', function () {
       const animatedElements = document.querySelectorAll('.animate');
       animatedElements.forEach(el => {
