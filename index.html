@@ -104,6 +104,63 @@
       background: #f3eded3b;
       margin: 8px 0;
     }
+    @media screen and (max-width: 768px) {
+      #fullscreenOverlay button {
+        display: none;
+      }
+    }
+  </style>
+
+  <!-- CSS per il flip della card con hover -->
+  <style>
+    /* Contenitore con effetto prospettica; dimensioni maggiori */
+    .flip-card {
+      perspective: 1000px;
+      width: 410px;   /* Dimensione maggiore */
+      height: 410px;  /* Dimensione maggiore */
+      cursor: pointer;
+      margin: 0 auto;
+      margin-left: 70px;
+      margin-bottom: 10px;
+    }
+    /* Interno della card, con transizione e effetto 3D */
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+    /* Al passaggio del mouse, la card ruota */
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    /* Lati frontale e retro, sovrapposti */
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      top: 0;
+      left: 0;
+    }
+    /* Lato frontale: immagine animata senza crop */
+    .flip-card-front img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;  /* Mostra l'immagine intera */
+    }
+    /* Lato retro: immagine della foto profilo (rotata) senza crop */
+    .flip-card-back {
+      transform: rotateY(180deg);
+    }
+    .flip-card-back img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;  /* Mostra l'immagine intera */
+      border-radius: 20px;  /* Arrotonda i bordi della seconda immagine */
+    }
   </style>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -140,6 +197,7 @@
     </div>
   </section>
 
+  <!-- Versione Mobile -->
   <div class="mobile-content">
     <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%; padding: 20px; color: #fff5f5; text-align: center;">
       <img loading="lazy" src="/images/riso1-mobile.gif" alt="Fiore GIF" id="home-gif2" class="home-gif2" style="width: 150px; height: 120px; margin: 10px auto;" />
@@ -183,13 +241,15 @@
     </div>
   </div>
 
-  <div id="fullscreenOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0); color: white; z-index: 1000; justify-content: center; align-items: center; flex-direction: column;">
-    <button onclick="closeOverlay()" style="position: absolute; top: 20px; right: 20px; font-size: 24px; color: white; background: transparent; border: none; cursor: pointer;">&times;</button>
+  <!-- Overlay -->
+  <div id="fullscreenOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0); color: white; z-index: 9999; justify-content: center; align-items: center; flex-direction: column;">
+    <button onclick="closeOverlay()" style="position: absolute; top: 20px; right: 20px; font-size: 48px; color: white; background: transparent; border: none; cursor: pointer;">&times;</button>
     <div id="overlayContent" style="width: 100%; height: 100%; padding: 0px;">
-      <iframe src="/blog/" width="100%" height="100%" frameborder="0" style="background: #00000000;"></iframe>
+      <iframe allow="clipboard-write" src="/blog/" width="100%" height="100%" frameborder="0" style="background: transparent;"></iframe>
     </div>
   </div>
-
+  
+  <!-- Versione Desktop -->
   <div class="desktop-content">
     <link href="./index.css" rel="stylesheet" />
     <div class="home-container1">
@@ -197,8 +257,19 @@
         <div style="background-image: url('/images/linee-lato.svg'); animation-duration: 0.9s;" class="animate home-container2-sovrapposto"></div>
         <div style="background-image: url('images/linee-sotto.svg'); animation-duration: 0.8s;" class="animate home-container2-sovrapposto"></div>
         <div class="animate home-container3 always-visible">
-          <!-- Immagine senza il parametro random -->
-          <img id="home-gif" src="https://vinc.ee/images/riso1.webp" alt="image" class="home-image" draggable="false" />
+          <!-- Flip Card: l'immagine ruota al passaggio del mouse -->
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Lato frontale: immagine animata (fiore) -->
+              <div class="flip-card-front">
+                <img src="/images/riso1.webp" alt="Fiore animato" draggable="false" />
+              </div>
+              <!-- Lato retro: foto profilo -->
+              <div class="flip-card-back">
+                <img src="/images/giphy.gif" alt="Foto Profilo" draggable="false" />
+              </div>
+            </div>
+          </div>
         </div>
         <div class="home-container4">
           <h1 class="home-text1">

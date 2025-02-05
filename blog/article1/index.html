@@ -15,7 +15,7 @@
 
     /* Variabili CSS globali */
     :root {
-      --background-color: rgba(6, 6, 6, 0); /* Sfondo del body semitrasparente */
+      --background-color: rgba(6, 6, 6, 0);
       --text-color: #e0e0e0;
       --primary-color: #bb86fc;
       --secondary-color: #ffffffc8;
@@ -88,21 +88,41 @@
       }
     }
 
-    img {
+    /* Contenitore per le immagini con placeholder */
+    .image-container {
       width: 100%;
-      border-radius: var(--border-radius);
+      /* Riserva lo spazio con rapporto 800:300 */
+      aspect-ratio: 800 / 300;
       margin: 20px 0;
+      border-radius: var(--border-radius);
+      overflow: hidden;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
       transition: transform var(--transition-duration);
+      background: #452d625a;
     }
 
-    img:hover {
+    .image-container:hover {
       transform: scale(1.03);
     }
 
-    /* Ho aumentato la trasparenza dell'articolo per far intravedere lo sfondo */
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: blur(20px);
+      transition: filter 0.5s ease-out;
+      cursor: pointer;
+    }
+
+    /* Rimozione graduale del blur una volta caricata l'immagine */
+    .image-container img.loaded {
+      filter: blur(0);
+    }
+
+    /* Articolo */
     article {
-      background-color: rgba(17, 17, 17, 0.75);
+      background-color: rgba(21, 21, 21, 0.77);
       padding: 30px;
       border-radius: var(--border-radius);
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
@@ -111,7 +131,27 @@
       -webkit-backdrop-filter: blur(5px);
     }
 
-    /* Modifica qui il padding-bottom per avvicinare la linea sottostante al testo */
+    @media screen and (max-width: 600px) {
+  /* Rimuovo il padding laterale del container per usare tutto lo spazio */
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+    background-color: rgba(19, 18, 18, 0.629);
+  }
+
+  /* Rimuovo il bordo arrotondato e gli eventuali margini */
+  article {
+    border-radius: 0;
+    margin-left: 0;
+    margin-right: 0;
+    /* Se vuoi, puoi anche ridurre il padding interno */
+    padding: 15px;
+    background-color: rgba(21, 21, 21, 0);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0);
+  }
+}
+
+
     h2 {
       color: var(--primary-color);
       margin-bottom: 15px;
@@ -125,7 +165,6 @@
       color: var(--text-color);
     }
 
-    /* Blocchi di codice con bordi chiari */
     pre {
       background: var(--code-background);
       padding: 15px;
@@ -135,7 +174,6 @@
       position: relative;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      /* Box-shadow aggiornato con colori chiari */
       box-shadow: 
         rgba(255, 255, 255, 0.15) 0px 30px 60px -30px,
         rgba(255, 255, 255, 0.25) 0px -2px 6px 0px inset;
@@ -151,7 +189,6 @@
       white-space: pre-wrap;
     }
 
-    /* Evidenziazione della sintassi */
     .keyword { color: var(--accent-color); }
     .string { color: #a8ff60; }
     .comment { color: #6272a4; font-style: italic; }
@@ -175,7 +212,6 @@
       color: var(--accent-color);
     }
 
-    /* Stile per il pulsante copy nei code blocks */
     .copy-btn {
       position: absolute;
       top: 10px;
@@ -193,11 +229,33 @@
     .copy-btn:hover {
       opacity: 1;
     }
+
+    /* Stili per il popup (modal) per ingrandire l'immagine con sfondo blur */
+    .modal {
+      display: none;  /* nascosto di default */
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      /* Applica il blur allo sfondo sottostante */
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: transparent;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      transform: scale(1.3);  /* ingrandimento del 30% */
+      transition: transform 0.3s ease;
+      border-radius: var(--border-radius);  /* mantiene il bordo arrotondato */
+    }
   </style>
 </head>
 <body>
-  <!-- L'elemento canvas per le particelle è stato rimosso -->
-
   <div class="container">
     <header>
       <h1>Lorem ipsum dolor sit amet consectetur</h1>
@@ -208,7 +266,10 @@
       <h2>Introductio</h2>
       <p>In mundo excultionis interretialis, fundamentalis est ad paginas accattivantes et functionales creandas. In hoc articulo, explorabimus quomodo has technologias adhibere ad consilia moderna et responsiva efficienda.</p>
       
-      <img src="https://via.placeholder.com/800x400" alt="Exemplum consilii interretialis">
+      <!-- Immagine con lazy loading, effetto blur e placeholder colorato -->
+      <div class="image-container">
+        <img data-src="https://picsum.photos/800/300" alt="Exemplum consilii interretialis" loading="lazy">
+      </div>
 
       <h2>Structura Basica</h2>
       <p>Basim paginae praebet. Hic exemplum simplicis structurae:</p>
@@ -260,10 +321,14 @@
     </footer>
   </div>
 
-  <!-- Script per aggiungere il pulsante copy a tutti i code blocks -->
+  <!-- Modal per l'ingrandimento dell'immagine (con effetto blur sullo sfondo) -->
+  <div id="imageModal" class="modal">
+    <img class="modal-content" id="modalImg" alt="Immagine ingrandita">
+  </div>
+
+  <!-- Script per il pulsante copy nei code blocks -->
   <script>
     document.querySelectorAll('pre').forEach(pre => {
-      // Assicuriamoci che il pre sia in posizione relativa
       pre.style.position = "relative";
       const copyButton = document.createElement("button");
       copyButton.textContent = "Copy";
@@ -273,15 +338,65 @@
       copyButton.addEventListener("click", () => {
         const codeText = pre.querySelector("code").innerText;
         navigator.clipboard.writeText(codeText).then(() => {
-          copyButton.textContent = "Copied!";
+          copyButton.textContent = "Copied! 🎉";
           setTimeout(() => {
             copyButton.textContent = "Copy";
-          }, 2000);
+          }, 500);
         }).catch(err => {
           copyButton.textContent = "Error";
           console.error("Failed to copy:", err);
         });
       });
+    });
+  </script>
+
+  <!-- Script per il caricamento lazy delle immagini con effetto blur -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const lazyImages = document.querySelectorAll("img[data-src]");
+      
+      const loadImage = img => {
+        img.addEventListener("load", () => {
+          img.classList.add("loaded");
+          img.removeAttribute("data-src");
+        });
+        img.src = img.getAttribute("data-src");
+      };
+
+      if ("IntersectionObserver" in window) {
+        let observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              loadImage(entry.target);
+              observer.unobserve(entry.target);
+            }
+          });
+        });
+        lazyImages.forEach(img => observer.observe(img));
+      } else {
+        lazyImages.forEach(img => loadImage(img));
+      }
+    });
+  </script>
+
+  <!-- Script per il popup (modal) dell'immagine -->
+  <script>
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImg");
+
+    // Apertura del modal al click sull'immagine
+    document.querySelectorAll(".image-container img").forEach(img => {
+      img.addEventListener("click", () => {
+        modal.style.display = "flex";
+        modalImg.src = img.src;
+      });
+    });
+
+    // Chiusura del modal cliccando in qualsiasi punto fuori dall'immagine
+    modal.addEventListener("click", function(event) {
+      if (event.target !== modalImg) {
+        modal.style.display = "none";
+      }
     });
   </script>
 </body>

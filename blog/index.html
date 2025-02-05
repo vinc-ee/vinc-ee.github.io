@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
   <title>vinc.ee ݁ ⊹ . ݁</title>
   <meta name="darkreader-lock">
@@ -7,9 +7,7 @@
   <meta name="supported-color-schemes" content="dark">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta charset="utf-8" />
-  <!-- Link al font Inter tramite CDN -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.css" />
-
+  
   <style>
     @font-face {
       font-family: 'DepartureMono';
@@ -20,10 +18,10 @@
       font-style: normal;
     }
 
-    /* Impostiamo il font principale per il body */
+    /* Impostazioni generali in stile terminale */
     body {
-      background-color: #9c202000;
-      color: #fff;
+      background-color: #00000083; /* sfondo scuro */
+      color: #f8f8f8;
       margin: 0;
       padding: 0;
       display: flex;
@@ -48,9 +46,9 @@
       margin-bottom: 15px;
     }
 
-    /* Linee con dissolvenza solo ai bordi */
+    /* Linee decorative con dissolvenza */
     .line {
-      height: 2px; /* Spessore linea */
+      height: 2px;
       width: 50%;
       background: linear-gradient(to right, transparent, #fd9fc9 20%, #fd9fc9 80%, transparent);
     }
@@ -59,22 +57,48 @@
       background: linear-gradient(to right, transparent, #b88eeb 20%, #b88eeb 80%, transparent);
     }
 
-    /* Usiamo DepartureMono per questo testo, se desiderato */
-    .line-with-text span {
-      margin: 0 15px;
-      color: #00bfa6f3;
-      font-weight: light;
-      font-size: 16px;
+    .line-with-text p {
+      margin: 0;
+      white-space: nowrap;
       font-family: "DepartureMono";
+      font-size: 16px;
     }
 
-    .line-with-text.red span {
+    /* Stili per il comando: parte grigia e parte colorata */
+    .cmd-gray {
+      color: #808080;
+    }
+    .cmd-green {
+      color: #00bfa6f3;
+    }
+    .cmd-red {
       color: #d3d37af0;
     }
 
     a {
-      font-weight: light;
+      font-weight: lighter;
       font-size: 16px;
+      text-decoration: none;
+      color: #f7f7f7;
+      transition: color 0.3s ease, text-decoration-thickness 0.3s ease;
+    }
+    
+    /* Regola globale (default) per il mouseover */
+    a:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-decoration-style: solid;
+      text-decoration-color: aquamarine;
+    }
+
+    /* Personalizzazione in base al colore della sezione */
+    /* Per le sezioni Writeups (non .red) */
+    .line-with-text:not(.red) ~ .post a:hover {
+      text-decoration-color: #00bfa6f3;
+    }
+    /* Per le sezioni Off-topic (.red) */
+    .line-with-text.red ~ .post a:hover {
+      text-decoration-color: #d3d37af0;
     }
 
     .post {
@@ -82,7 +106,7 @@
       align-items: center;
       margin: 5px 0;
       padding: 1px;
-      background-color: #ff2e2e00;
+      background-color: transparent;
     }
 
     .post img {
@@ -91,83 +115,129 @@
       margin-right: 15px;
       border-radius: 4px;
       transition: opacity 0.5s ease, transform 0.3s ease;
-      opacity: 0.6;
+      opacity: 0.8;
     }
 
     .post img.loaded {
       opacity: 1;
     }
 
-    /* Effetto hover per ingrandire l'immagine */
     .post img:hover {
       transform: scale(1.1);
     }
 
-    .post-title a {
-      font-size: 1em;
-      color: #fff;
-      text-decoration: none;
-      transition: color 0.3s ease, text-decoration-thickness 0.3s ease;
+    /* Contenitore per titolo e data (connettore tratteggiato) */
+    .post-info {
+      display: flex;
+      align-items: center;
+      width: 100%;
     }
 
-    /* Hover: rende la sottolineatura più visibile */
-    .post-title a:hover {
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-      text-decoration-style: solid;
-      text-decoration-color: aquamarine;
-      color: #fff;
+    .post-title {
+      font-size: 1em;
+      white-space: nowrap;
+    }
+
+    /* Il connettore tratteggiato che si estende tra il titolo e la data */
+    .connector {
+      flex-grow: 1;
+      border-bottom: 1px dashed #61AFEF;
+      margin: 0 10px;
+      height: 0;
+    }
+
+    /* Stile "powerline" per la data ispirato ai temi zsh */
+    .post-date {
+      position: relative;
+      background-color: #3c3c3c99;
+      color: #61AFEF;
+      padding: 3px 10px 2px 15px;
+      font-family: 'Courier New', monospace;
+      border-radius: 4px;
+      white-space: nowrap;
+      font-size:13px;
+    }
+    /* Separatore con emoji sbiadita */
+    .post-date::before {
+      content: "⚡️";
+      position: absolute;
+      left: -10px;
+      top: 0;
+      font-size: 1.1em;
+      line-height: 1.8;
+      color: #3C3C3C;
+      opacity: 0.8;
+    }
+
+    /* Nascondi data e connettore su dispositivi mobili */
+    @media (max-width: 600px) {
+      .connector,
+      .post-date {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Sezione con linea verde -->
+    <!-- Sezione con linea verde (Writeups) -->
     <div class="section">
       <div class="line-with-text">
         <div class="line" id="line-green-left"></div>
-        <span><p style="white-space: nowrap;">Writeups</p></span>
+        <span>
+          <p style="white-space: nowrap;"><span class="cmd-gray">$ cat ~/</span><span class="cmd-green">Writeups</span><span class="cmd-gray">.txt</span></p>
+        </span>
         <div class="line" id="line-green-right"></div>
       </div>
       <div class="post">
         <a href="/blog/article1/">
           <img style="border-radius: 7px;" src="example-min.webp" data-src="example.webp" alt="?">
         </a>
-        <div class="post-title">
-          <a href="/blog/article1/">Phasellus volutpat porttitor felis eu consequat</a>
+        <div class="post-info">
+          <a href="/blog/article1/" class="post-title">Phasellus volutpat porttitor felis eu consequat</a>
+          <div class="connector"></div>
+          <time class="post-date" datetime="2025-02-04"><span>12/02/2023</span></time>
         </div>
       </div>
       <div class="post">
         <a href="/blog/article1/">
           <img style="border-radius: 7px;" src="example-min.webp" data-src="example.webp" alt="?">
         </a>
-        <div class="post-title">
-          <a href="/blog/article1/">Cras elit diam, fringilla non laoreet et</a>
+        <div class="post-info">
+          <a href="/blog/article1/" class="post-title">Cras elit diam, fringilla non laoreet et</a>
+          <div class="connector"></div>
+          <time class="post-date" datetime="2025-02-04"><span>12/02/2023</span></time>
         </div>
       </div>
     </div>
 
-    <!-- Sezione con linea rossa -->
+    <!-- Sezione con linea rossa (Off-topic) -->
     <div class="section">
       <div class="line-with-text red">
         <div class="line red" id="line-red-left"></div>
-        <span><p style="white-space: nowrap;">Off-topic</p></span>
+        <span>
+          <p style="white-space: nowrap; font-size: 1em;"><span class="cmd-gray">$ cat ~/</span><span class="cmd-red">Off-topic</span><span class="cmd-gray">.txt</span></p>
+        </span>
         <div class="line red" id="line-red-right"></div>
       </div>
       <div class="post">
         <a href="/blog/article1/">
           <img style="border-radius: 7px;" src="example-min.webp" data-src="example.webp" alt="?">
         </a>
-        <div class="post-title">
-          <a href="/blog/article1/">hendrerit vehicula erat. Sed ut eros</a>
+        <div class="post-info">
+          <a href="/blog/article1/" class="post-title">hendrerit vehicula erat. Sed ut eros</a>
+          <div class="connector"></div>
+          <time class="post-date" datetime="2025-02-04"><span>12/02/2023</span></time>
         </div>
       </div>
       <div class="post">
         <a href="/blog/article1/">
           <img style="border-radius: 7px;" src="example-min.webp" data-src="example.webp" alt="?">
         </a>
-        <div class="post-title">
-          <a href="/blog/article1/">rhoncus turpis cursus id. Vestibulum</a>
+        <div class="post-info">
+          <a href="/blog/article1/" class="post-title">rhoncus turpis cursus id. Vestibulum</a>
+          <div class="connector"></div>
+          <time class="post-date" datetime="2025-02-04"><span>12/02/2023</span></time>
         </div>
       </div>
     </div>
